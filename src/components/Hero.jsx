@@ -3,19 +3,16 @@ import React from 'react';
 function Hero() {
   return (
     <section id="hero" className="hero">
-      <p className="intro">Hi, my name is</p>
+      <p className="intro">Hi Darling, my name is</p>
       <h1 className="name">John Michael Jonatas.</h1>
-      <h2 className="subtitle">I build things for the web.</h2>
+      <h2 className="subtitle">I am into Web Development.</h2> {/* You can add the typing animation here later */}
       <p className="description">
-        I'm a passionate web developer specializing in crafting exceptional
-        digital experiences. Currently, I'm focused on building responsive and
-        user-friendly web applications using modern technologies like React.
+        I am a Full-Tank Developer and 3rd-year student at Phinma AU passionate about enhancing my coding skills.
       </p>
-      <a href="#projects" className="cta-button">
-        View My Work
+      <a href="#about" className="cta-button">
+        About Me
       </a>
     </section>
   );
 }
-
 export default Hero;

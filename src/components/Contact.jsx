@@ -10,7 +10,7 @@ function Contact() {
         Whether you have a question or just want to say hi, I'll do my best
         to get back to you!
       </p>
-      <a href="mailto:your.email@example.com" className="cta-button">
+      <a href="mailto:jmjonatas4@gmail.com" className="cta-button">
         Say Hello
       </a>
     </section>
