@@ -1,5 +1,5 @@
 import React from 'react';
-// Import your school logos
+import { useInView } from 'react-intersection-observer';
 import auLogo from '../assets/educat/AU.jpg';
 import fmnhsLogo from '../assets/educat/fmnhs.jpg';
 
@@ -19,15 +19,21 @@ const educationData = [
 ];
 
 function Education() {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
   return (
-    <section id="education" className="education">
-      <h2 className="section-title">
-        <span className="number">04.</span>
+    <section id="education" className="education" ref={ref}>
+      <h2 className={`section-title animate-item ${inView ? 'visible fade-in-up' : 'fade-in-up'}`}>
+        <span className="number">03.</span>
         My Education
       </h2>
       <div className="education-container">
-        {educationData.map(edu => (
-          <div key={edu.school} className="education-box">
+        {educationData.map((edu, index) => (
+          <div 
+            key={edu.school} 
+            className={`education-box animate-item ${inView ? 'visible fade-in-up' : 'fade-in-up'}`}
+            style={{ transitionDelay: `${index * 200}ms` }}
+          >
             <img src={edu.logo} alt={`${edu.school} logo`} className="education-logo" />
             <div className="education-content">
               <h3>{edu.school}</h3>

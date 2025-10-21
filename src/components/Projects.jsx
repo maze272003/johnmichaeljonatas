@@ -1,5 +1,6 @@
 import React from 'react';
-import { Github, ExternalLink } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
+import { ExternalLink } from 'lucide-react';
 
 // Import your project images here
 import jabsImg from '../assets/projects/jabs.png';
@@ -7,6 +8,9 @@ import luminaImg from '../assets/projects/lumina3.png';
 import arkvisionImg from '../assets/projects/arkvsion.png';
 import autoservImg from '../assets/projects/Autoserv.png';
 import springbullbarsImg from '../assets/projects/springbullbars.png';
+import rmpoims from '../assets/projects/rctmed.png';
+// NOTE: Add your RMPOIMS image import here when you have it
+// import rmpoimsImg from '../assets/projects/rmpoims.png';
 
 
 const projectData = [
@@ -21,6 +25,17 @@ const projectData = [
     status: 'Completed',
     statusColor: 'blue',
   },
+   {
+    id: 6, // Changed ID to be unique
+    category: 'School Project',
+    title: 'RMPOIMS - Inventory System',
+    description: 'A comprehensive inventory system that utilizes QR codes for efficient ordering and tracking of products.',
+    tech: ['Laravel', 'MySQL', 'Tailwindcss'],
+    imageUrl: rmpoims, // Replace with rmpoimsImg when available
+    liveUrl: 'https://rmpoims.com/',
+    status: 'Working',
+    statusColor: 'green',
+  },
   {
     id: 2,
     category: 'School Project',
@@ -28,9 +43,9 @@ const projectData = [
     description: 'A web platform for managing car servicing appointments, tracking repairs, and streamlining customer communication.',
     tech: ['Laravel', 'PHP', 'MySQL'],
     imageUrl: autoservImg,
-    liveUrl: '#', // Add link if available
-    status: 'EXPIRED',
-    statusColor: 'green',
+    liveUrl: '#',
+    status: 'Expired',
+    statusColor: 'gray',
   },
   {
     id: 3,
@@ -39,9 +54,9 @@ const projectData = [
     description: 'An e-commerce website offering a variety of products with a user-friendly shopping experience.',
     tech: ['Vanilla PHP', 'MySQL'],
     imageUrl: luminaImg,
-    liveUrl: '#', // Add link if available
-    status: 'EXPIRED',
-    statusColor: 'green',
+    liveUrl: '#',
+    status: 'Expired',
+    statusColor: 'gray',
   },
   {
     id: 4,
@@ -50,9 +65,9 @@ const projectData = [
     description: 'Offers affordable sound system rentals for events and showcases music collaborations with artists.',
     tech: ['HTML', 'CSS', 'JavaScript'],
     imageUrl: jabsImg,
-    liveUrl: '#', // Add link if available
-    status: 'EXPIRED',
-    statusColor: 'green',
+    liveUrl: '#',
+    status: 'Expired',
+    statusColor: 'gray',
   },
   {
     id: 5,
@@ -62,46 +77,52 @@ const projectData = [
     tech: ['Node.js', 'Express'],
     imageUrl: arkvisionImg,
     liveUrl: 'https://drive.google.com/drive/folders/16Xv620F_LgnsPllMRAUDktXM91C39U93?usp=sharing',
-    status: 'EXPIRED',
-    statusColor: 'red',
-  },
-  {
-    id: 6,
-    category: 'School Project',
-    title: 'RMPOIMS - Inventory Management System with ordering qr code.',
-    description: 'A comprehensive inventory management system that utilizes QR codes for efficient ordering and tracking of products.',
-    tech: ['Laravel', 'MySql'],
-    imageUrl: arkvisionImg,
-    liveUrl: 'https://rmpoims.com/',
-    status: 'WORKING',
+    status: 'Not Working',
     statusColor: 'red',
   },
 ];
 
 function Projects() {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
   return (
-    <section id="projects" className="projects">
-      <h2 className="section-title">
-          <span className="number">02.</span>
-          My Projects
+    <section id="projects" className="projects" ref={ref}>
+      <h2 className={`section-title animate-item ${inView ? 'visible fade-in-up' : 'fade-in-up'}`}>
+        <span className="number">04.</span>
+        My Projects
       </h2>
       <ul className="projects-grid">
-        {projectData.map(project => (
-          <li key={project.id} className="project-card">
-            <div>
-              <header className="project-card-header">
-                <h3 className="project-card-title">
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">{project.title}</a>
-                </h3>
-                <div className="project-card-links">
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label="Live Demo"><ExternalLink size={20} /></a>
-                </div>
-              </header>
-              <p className="project-card-description">{project.description}</p>
+        {projectData.map((project, index) => (
+          <li 
+            key={project.id} 
+            className={`project-card animate-item ${inView ? 'visible fade-in-up' : 'fade-in-up'}`}
+            style={{ transitionDelay: `${index * 150}ms` }}
+          >
+            {/* Project Image and Status Badge */}
+            <div className="project-image-container">
+              <img src={project.imageUrl} alt={project.title} className="project-image" />
+              <span className={`project-status-badge status-${project.statusColor}`}>
+                {project.status}
+              </span>
             </div>
-            <footer className="project-card-tech">
-              {project.tech.map(tech => <span key={tech}>{tech}</span>)}
-            </footer>
+
+            {/* Project Content */}
+            <div className="project-content">
+              <div>
+                <header className="project-card-header">
+                  <h3 className="project-card-title">
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">{project.title}</a>
+                  </h3>
+                  <div className="project-card-links">
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label="Live Demo"><ExternalLink size={20} /></a>
+                  </div>
+                </header>
+                <p className="project-card-description">{project.description}</p>
+              </div>
+              <footer className="project-card-tech">
+                {project.tech.map(tech => <span key={tech}>{tech}</span>)}
+              </footer>
+            </div>
           </li>
         ))}
       </ul>

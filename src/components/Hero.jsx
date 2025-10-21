@@ -5,7 +5,7 @@ function Hero() {
     <section id="hero" className="hero">
       <p className="intro">Hi Darling, my name is</p>
       <h1 className="name">John Michael Jonatas.</h1>
-      <h2 className="subtitle">I am into Web Development.</h2> {/* You can add the typing animation here later */}
+      <h2 className="subtitle">I build things for the web.</h2>
       <p className="description">
         I am a Full-Tank Developer and 3rd-year student at Phinma AU passionate about enhancing my coding skills.
       </p>
@@ -15,4 +15,5 @@ function Hero() {
     </section>
   );
 }
+
 export default Hero;

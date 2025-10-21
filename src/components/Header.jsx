@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react'; // Mag-import tayo ng X icon para sa close button
+import { Menu, X } from 'lucide-react';
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State para sa menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -11,18 +11,16 @@ function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Function para i-toggle ang menu (open/close)
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Function para mag-scroll at isara ang menu
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
     }
-    setIsMenuOpen(false); // Isasara ang menu pagkatapos mag-click ng link
+    setIsMenuOpen(false);
   };
 
   return (
@@ -36,20 +34,20 @@ function Header() {
           J.M.J
         </a>
 
-        {/* --- Desktop Navigation --- */}
         <nav className="desktop-nav">
           <ul className="nav-links">
-            {/* Links for desktop */}
+            <li><a href="#about" onClick={(e) => {e.preventDefault(); scrollToSection('about')}}><span className="nav-link-number">01.</span> About</a></li>
+            <li><a href="#skills" onClick={(e) => {e.preventDefault(); scrollToSection('skills')}}><span className="nav-link-number">02.</span> Skills</a></li>
+            <li><a href="#projects" onClick={(e) => {e.preventDefault(); scrollToSection('projects')}}><span className="nav-link-number">03.</span> Projects</a></li>
+            <li><a href="#contact" onClick={(e) => {e.preventDefault(); scrollToSection('contact')}}><span className="nav-link-number">04.</span> Contact</a></li>
           </ul>
         </nav>
 
-        {/* --- Mobile Menu Button (Burger Icon) --- */}
         <button className="mobile-menu-btn" onClick={toggleMenu} aria-label="Menu">
           {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
         </button>
       </header>
 
-      {/* --- Mobile Sidebar Navigation --- */}
       <nav className={isMenuOpen ? 'sidebar sidebar-open' : 'sidebar'}>
         <ul className="sidebar-links">
           <li>
@@ -58,13 +56,18 @@ function Header() {
             </a>
           </li>
           <li>
+            <a href="#skills" onClick={() => scrollToSection('skills')}>
+              <span className="nav-link-number">02.</span> Skills
+            </a>
+          </li>
+          <li>
             <a href="#projects" onClick={() => scrollToSection('projects')}>
-              <span className="nav-link-number">02.</span> Projects
+              <span className="nav-link-number">03.</span> Projects
             </a>
           </li>
           <li>
             <a href="#contact" onClick={() => scrollToSection('contact')}>
-              <span className="nav-link-number">03.</span> Contact
+              <span className="nav-link-number">04.</span> Contact
             </a>
           </li>
         </ul>

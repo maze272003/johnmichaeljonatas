@@ -1,5 +1,5 @@
 import React from 'react';
-// Mag-import ng specific icons mula sa library
+import { useInView } from 'react-intersection-observer';
 import {
   FaPython, FaPhp, FaLaravel, FaJava, FaJsSquare, FaNodeJs, FaReact
 } from 'react-icons/fa';
@@ -19,16 +19,21 @@ const skillsData = [
 ];
 
 function Skills() {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
   return (
-    <section id="skills" className="skills">
-      <h2 className="section-title">
-        <span className="number">03.</span>
+    <section id="skills" className="skills" ref={ref}>
+      <h2 className={`section-title animate-item ${inView ? 'visible fade-in-up' : 'fade-in-up'}`}>
+        <span className="number">02.</span>
         Skills & Abilities
       </h2>
       <div className="skills-container">
-        {skillsData.map(skill => (
-          <div key={skill.name} className="skill-item">
-            {/* Direkta nating ilalagay ang icon component dito */}
+        {skillsData.map((skill, index) => (
+          <div 
+            key={skill.name} 
+            className={`skill-item animate-item ${inView ? 'visible fade-in-up' : 'fade-in-up'}`}
+            style={{ transitionDelay: `${index * 100}ms` }}
+          >
             {skill.icon}
             <span>{skill.name}</span>
           </div>

@@ -561,3 +561,144 @@ a {
   color: var(--text-primary);
   font-weight: 500;
 }
+
+/* === SCROLL ANIMATION STYLES === */
+
+/* This is the starting state of the section (hidden) */
+.section-animation {
+  opacity: 0;
+  transform: translateY(50px); /* Start 50px below its final position */
+  transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+}
+
+/* This is the final state when the 'visible' class is added (visible) */
+.section-animation.visible {
+  opacity: 1;
+  transform: translateY(0); /* Move to its final position */
+}
+
+/* === NEW SCROLL ANIMATION STYLES === */
+
+/* Ang base state ng bawat item na ia-animate (nakatago) */
+.animate-item {
+  opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Mga iba't ibang starting positions */
+.fade-in-up {
+  transform: translateY(50px);
+}
+.fade-in-left {
+  transform: translateX(-50px);
+}
+.fade-in-right {
+  transform: translateX(50px);
+}
+
+/* Ang final state kapag visible na (lumabas na) */
+.animate-item.visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* === PROJECTS SECTION (Updated) === */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; /* Increased gap */
+  list-style: none;
+}
+
+.project-card {
+  background-color: var(--secondary-color);
+  border-radius: 8px; /* Slightly more rounded */
+  box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Important for image */
+}
+.project-card:hover {
+  transform: translateY(-7px);
+}
+
+/* New styles for image container */
+.project-image-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+}
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center; /* Focus on the top part of the image */
+}
+
+/* New styles for the status badge */
+.project-status-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 999px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.status-green { background-color: #22c55e; }
+.status-blue { background-color: #3b82f6; }
+.status-red { background-color: #ef4444; }
+.status-gray { background-color: #8892b0; }
+
+
+/* Styles for the text content below the image */
+.project-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1; /* Makes the card fill height */
+}
+
+.project-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.project-card-title {
+  font-size: 1.25rem; /* Slightly smaller title */
+}
+.project-card-title a {
+    color: var(--text-primary);
+}
+.project-card-title a:hover {
+    color: var(--accent-color);
+}
+
+.project-card-links a {
+  color: var(--text-secondary);
+}
+.project-card-links a:hover {
+  color: var(--accent-color);
+}
+
+.project-card-description {
+  font-size: 0.95rem; /* Slightly smaller description */
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.project-card-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem; /* Smaller gap */
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+  color: var(--accent-color);
+  margin-top: auto; /* Pushes tech to the bottom */
+}
