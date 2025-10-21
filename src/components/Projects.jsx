@@ -1,29 +1,29 @@
-// src/components/Projects.jsx
 import React from 'react';
+import { Github, ExternalLink } from 'lucide-react';
 
-// You might want to move this data to a separate file (e.g., src/data/projects.js) later
 const projectData = [
-  {
+  // ... (pareho pa rin ang data mo dito)
+    {
     id: 1,
-    title: 'E-commerce Storefront',
-    description: 'A full-featured e-commerce platform built with React and a mock API. Includes product listings, shopping cart, and checkout process.',
-    imageUrl: 'https://via.placeholder.com/400x200/e67e22/ffffff?text=Project+1', // Replace with actual image
+    title: 'E-commerce Platform',
+    description: 'A full-featured e-commerce solution built with React and Node.js, featuring product management, cart functionality, and secure checkout.',
+    tech: ['React', 'Node.js', 'MongoDB'],
     liveUrl: '#',
     githubUrl: '#',
   },
   {
     id: 2,
     title: 'Task Management App',
-    description: 'A simple and intuitive task management application with drag-and-drop functionality and local storage persistence.',
-    imageUrl: 'https://via.placeholder.com/400x200/34495e/ffffff?text=Project+2', // Replace with actual image
+    description: 'A productivity application with drag-and-drop functionality, real-time updates, and team collaboration features.',
+    tech: ['React', 'Firebase', 'CSS'],
     liveUrl: '#',
     githubUrl: '#',
   },
   {
     id: 3,
-    title: 'Personal Blog Site',
-    description: 'A sleek personal blog developed with React, showcasing markdown parsing and dynamic routing for posts.',
-    imageUrl: 'https://via.placeholder.com/400x200/2c3e50/ffffff?text=Project+3', // Replace with actual image
+    title: 'Portfolio Website',
+    description: 'A responsive portfolio website showcasing modern design principles and optimized performance.',
+    tech: ['React', 'CSS3', 'Vite'],
     liveUrl: '#',
     githubUrl: '#',
   },
@@ -32,26 +32,31 @@ const projectData = [
 function Projects() {
   return (
     <section id="projects" className="projects">
-      <div className="container">
-        <h2>My Projects</h2>
-        <p>A selection of my recent work, demonstrating my skills in web development.</p>
-
-        <div className="projects-grid">
-          {projectData.map(project => (
-            <div className="project-card" key={project.id}>
-              <img src={project.imageUrl} alt={project.title} className="project-card-image" />
-              <div className="project-card-content">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
+      <h2 className="section-title">
+          <span className="number">02.</span>
+          Some Things I’ve Built
+      </h2>
+      <ul className="projects-grid">
+        {projectData.map(project => (
+          <li key={project.id} className="project-card">
+            <div>
+              <header className="project-card-header">
+                <h3 className="project-card-title">
+                  <a href={project.liveUrl || project.githubUrl}>{project.title}</a>
+                </h3>
                 <div className="project-card-links">
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">Live Demo</a>
-                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+                  <a href={project.githubUrl} aria-label="GitHub"><Github size={20} /></a>
+                  <a href={project.liveUrl} aria-label="Live Demo"><ExternalLink size={20} /></a>
                 </div>
-              </div>
+              </header>
+              <p className="project-card-description">{project.description}</p>
             </div>
-          ))}
-        </div>
-      </div>
+            <footer className="project-card-tech">
+              {project.tech.map(tech => <span key={tech}>{tech}</span>)}
+            </footer>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

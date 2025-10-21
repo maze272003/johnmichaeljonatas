@@ -1,24 +1,23 @@
-// src/components/Footer.jsx
 import React from 'react';
-// You might need to install react-icons for these. If so: npm install react-icons
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { Github, Linkedin } from 'lucide-react';
 
 function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="footer-social">
-          <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><FaGithub /></a>
-          <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
-          <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><FaTwitter /></a>
-        </div>
-        <p className="footer-text">
-          &copy; {currentYear} John Michael Jonatas. All rights reserved.
-        </p>
+    <>
+      {/* These will only appear on desktop screens due to CSS */}
+      <div className="social-sidebar">
+        <a href="https://github.com/yourusername" aria-label="GitHub"><Github /></a>
+        <a href="https://linkedin.com/in/yourprofile" aria-label="LinkedIn"><Linkedin /></a>
       </div>
-    </footer>
+
+      <div className="email-sidebar">
+        <a href="mailto:your.email@example.com">your.email@example.com</a>
+      </div>
+      
+      <footer className="footer">
+        <p>&copy; {new Date().getFullYear()} John Michael Jonatas. Designed & Built with ❤️.</p>
+      </footer>
+    </>
   );
 }
 

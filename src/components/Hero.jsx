@@ -1,19 +1,19 @@
-// src/components/Hero.jsx
 import React from 'react';
 
 function Hero() {
   return (
     <section id="hero" className="hero">
-      <div className="container">
-        <h1>Hi, I'm John Michael Jonatas.</h1>
-        <p className="subtitle">
-          A passionate **Web Developer** crafting beautiful and functional digital experiences.
-        </p>
-        <a href="#projects" className="btn">View My Work</a>
-        <a href="#contact" className="btn" style={{ marginLeft: '20px', backgroundColor: 'transparent', border: '2px solid var(--accent-color)' }}>
-          Get In Touch
-        </a>
-      </div>
+      <p className="intro">Hi, my name is</p>
+      <h1 className="name">John Michael Jonatas.</h1>
+      <h2 className="subtitle">I build things for the web.</h2>
+      <p className="description">
+        I'm a passionate web developer specializing in crafting exceptional
+        digital experiences. Currently, I'm focused on building responsive and
+        user-friendly web applications using modern technologies like React.
+      </p>
+      <a href="#projects" className="cta-button">
+        View My Work
+      </a>
     </section>
   );
 }
