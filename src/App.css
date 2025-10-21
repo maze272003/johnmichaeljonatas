@@ -353,6 +353,45 @@ a {
     display: none;
 }
 
+/* === MOBILE SIDEBAR NAVIGATION === */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(75vw, 400px);
+  background-color: var(--secondary-color);
+  box-shadow: -10px 0px 30px -15px rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 9;
+}
+
+.sidebar.sidebar-open {
+  transform: translateX(0);
+}
+
+.sidebar-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  text-align: center;
+}
+
+.sidebar-links a {
+  font-size: 1.2rem;
+  font-family: 'Fira Code', monospace;
+  color: var(--text-primary);
+}
+
+.sidebar-links a:hover {
+  color: var(--accent-color);
+}
 
 /* === RESPONSIVE DESIGN === */
 @media (min-width: 768px) {
@@ -427,7 +466,7 @@ a {
     .header {
         padding: 0 20px;
     }
-    .nav-links {
+    .nav-links, .desktop-nav {
         display: none;
     }
     .mobile-menu-btn {
