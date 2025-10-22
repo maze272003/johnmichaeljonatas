@@ -15,7 +15,7 @@ function Contact() {
           to get back to you!
         </p>
         <a href="mailto:jmjonatas4@gmail.com" className="cta-button">
-          Say Hello Get Touch
+          Say Hello Get Touch 😎
         </a>
       </div>
     </section>
