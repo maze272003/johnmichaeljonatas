@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+import ImageModal from './ImageModal'; // The reusable modal for previews
 
-// Import your project images here
+// Import your project images
 import jabsImg from '../assets/projects/jabs.png';
 import luminaImg from '../assets/projects/lumina3.png';
 import arkvisionImg from '../assets/projects/arkvsion.png';
 import autoservImg from '../assets/projects/Autoserv.png';
 import springbullbarsImg from '../assets/projects/springbullbars.png';
 import rmpoims from '../assets/projects/rctmed.png';
-// NOTE: Add your RMPOIMS image import here when you have it
-// import rmpoimsImg from '../assets/projects/rmpoims.png';
-
 
 const projectData = [
   {
@@ -26,12 +25,12 @@ const projectData = [
     statusColor: 'blue',
   },
    {
-    id: 6, // Changed ID to be unique
+    id: 6,
     category: 'School Project',
     title: 'RMPOIMS - Inventory System',
     description: 'A comprehensive inventory system that utilizes QR codes for efficient ordering and tracking of products.',
     tech: ['Laravel', 'MySQL', 'Tailwindcss'],
-    imageUrl: rmpoims, // Replace with rmpoimsImg when available
+    imageUrl: rmpoims,
     liveUrl: 'https://rmpoims.com/',
     status: 'Working',
     statusColor: 'green',
@@ -82,51 +81,98 @@ const projectData = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 }
+};
+
 function Projects() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [selectedImage, setSelectedImage] = useState(null); // State for the image preview
+  const lastTap = useRef(0); // Ref to track taps for mobile
+
+  const handleDoubleClick = (imageUrl) => {
+    setSelectedImage(imageUrl);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
+  const handleTouchEnd = (imageUrl) => {
+    const now = new Date().getTime();
+    if (now - lastTap.current < 300) { // 300ms threshold for a double tap
+      handleDoubleClick(imageUrl);
+    }
+    lastTap.current = now;
+  };
 
   return (
-    <section id="projects" className="projects" ref={ref}>
-      <h2 className={`section-title animate-item ${inView ? 'visible fade-in-up' : 'fade-in-up'}`}>
-        <span className="number">05.</span>
-        My Projects
-      </h2>
-      <ul className="projects-grid">
-        {projectData.map((project, index) => (
-          <li 
-            key={project.id} 
-            className={`project-card animate-item ${inView ? 'visible fade-in-up' : 'fade-in-up'}`}
-            style={{ transitionDelay: `${index * 150}ms` }}
-          >
-            {/* Project Image and Status Badge */}
-            <div className="project-image-container">
-              <img src={project.imageUrl} alt={project.title} className="project-image" />
-              <span className={`project-status-badge status-${project.statusColor}`}>
-                {project.status}
-              </span>
-            </div>
+    <>
+      <section id="projects" className="projects" ref={ref}>
+        <motion.h2 
+            className="section-title"
+            initial={{ opacity: 0, y: 50 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
+        >
+          <span className="number">05.</span>
+          My Projects
+        </motion.h2>
 
-            {/* Project Content */}
-            <div className="project-content">
-              <div>
-                <header className="project-card-header">
-                  <h3 className="project-card-title">
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">{project.title}</a>
-                  </h3>
-                  <div className="project-card-links">
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label="Live Demo"><ExternalLink size={20} /></a>
-                  </div>
-                </header>
-                <p className="project-card-description">{project.description}</p>
+        <motion.ul 
+          className="projects-grid"
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+        >
+          {projectData.map((project) => (
+            <motion.li 
+              key={project.id} 
+              variants={itemVariants}
+              className="project-card"
+              onDoubleClick={() => handleDoubleClick(project.imageUrl)}
+              onTouchEnd={() => handleTouchEnd(project.imageUrl)}
+            >
+              <div className="project-image-container">
+                <img src={project.imageUrl} alt={project.title} className="project-image" />
+                <span className={`project-status-badge status-${project.statusColor}`}>
+                  {project.status}
+                </span>
               </div>
-              <footer className="project-card-tech">
-                {project.tech.map(tech => <span key={tech}>{tech}</span>)}
-              </footer>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </section>
+
+              <div className="project-content">
+                <div>
+                  <header className="project-card-header">
+                    <h3 className="project-card-title">
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">{project.title}</a>
+                    </h3>
+                    <div className="project-card-links">
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label="Live Demo"><ExternalLink size={20} /></a>
+                    </div>
+                  </header>
+                  <p className="project-card-description">{project.description}</p>
+                </div>
+                <footer className="project-card-tech">
+                  {project.tech.map(tech => <span key={tech}>{tech}</span>)}
+                </footer>
+              </div>
+            </motion.li>
+          ))}
+        </motion.ul>
+      </section>
+
+      <AnimatePresence>
+        {selectedImage && (
+          <ImageModal imageUrl={selectedImage} onClose={closeModal} />
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
