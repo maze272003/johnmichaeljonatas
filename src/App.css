@@ -54,13 +54,7 @@ a {
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* === HEADER === */
+/* === HEADER (Updated) === */
 .header {
   position: fixed;
   top: 0;
@@ -95,21 +89,52 @@ a {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
   list-style: none;
 }
 
-.nav-link a {
-  color: var(--text-primary);
-  font-family: 'Fira Code', monospace;
-  font-size: 0.9rem;
+.nav-links a {
+  color: var(--text-secondary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  position: relative;
+  padding: 5px 0;
+  transition: color 0.3s ease;
 }
-.nav-link a:hover {
+
+.nav-links a:hover {
   color: var(--accent-color);
 }
-.nav-link-number {
-  color: var(--accent-color);
-  margin-right: 5px;
+
+/* Underline hover effect for nav links */
+.nav-links a:not(.resume-button)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-links a:not(.resume-button):hover::after {
+    transform: scaleX(1);
+}
+
+/* Resume Button Style for Desktop */
+.resume-button {
+    color: var(--accent-color) !important;
+    border: 1px solid var(--accent-color);
+    padding: 0.5rem 1rem !important;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.resume-button:hover {
+    background-color: rgba(100, 255, 218, 0.1);
 }
 
 .mobile-menu-btn {
@@ -122,39 +147,87 @@ a {
   z-index: 20;
 }
 
+
+/* === MOBILE SIDEBAR NAVIGATION (Updated) === */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(75vw, 400px);
+  background-color: var(--secondary-color);
+  box-shadow: -10px 0px 30px -15px rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 9;
+}
+
+.sidebar.sidebar-open {
+  transform: translateX(0);
+}
+
+.sidebar-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  text-align: center;
+}
+
+.sidebar-links a {
+  font-size: 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.sidebar-links a:hover {
+  color: var(--accent-color);
+}
+
+/* Resume Button Style for Mobile */
+.resume-button-mobile {
+    margin-top: 1rem;
+    font-size: 1.2rem !important;
+    color: var(--accent-color) !important;
+    border: 1px solid var(--accent-color);
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+}
+
+
 /* === HERO SECTION === */
 .hero {
   text-align: left;
   max-width: 1000px;
 }
-
 .hero .intro {
   color: var(--accent-color);
   font-family: 'Fira Code', monospace;
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
 }
-
 .hero .name {
   font-size: clamp(40px, 8vw, 80px);
   line-height: 1.1;
 }
-
 .hero .subtitle {
   font-size: clamp(40px, 8vw, 70px);
   color: var(--text-secondary);
   line-height: 1.1;
   margin-top: 0.5rem;
 }
-
 .hero .description {
   margin-top: 1.5rem;
   max-width: 540px;
   font-size: 1.1rem;
   line-height: 1.6;
 }
-
-.hero .cta-button {
+.hero .cta-button, .contact .cta-button, .about-text .cta-button {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -169,7 +242,7 @@ a {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.hero .cta-button:hover {
+.hero .cta-button:hover, .contact .cta-button:hover, .about-text .cta-button:hover {
   background-color: rgba(100, 255, 218, 0.1);
 }
 
@@ -205,13 +278,11 @@ a {
     align-items: flex-start;
     text-align: left;
 }
-
 .about .section-title {
     align-self: center;
     text-align: center;
     margin-bottom: 50px;
 }
-
 .about-content {
     display: flex;
     flex-direction: column;
@@ -221,7 +292,6 @@ a {
     max-width: 1000px;
     margin: 0 auto;
 }
-
 .about-image-wrapper {
     position: relative;
     width: 250px;
@@ -232,12 +302,10 @@ a {
     box-shadow: 0 0 0 7px rgba(100, 255, 218, 0.2);
     transition: all 0.3s ease;
 }
-
 .about-image-wrapper:hover {
     box-shadow: 0 0 0 10px rgba(100, 255, 218, 0.4);
     transform: scale(1.02);
 }
-
 .profile-image {
     width: 100%;
     height: 100%;
@@ -245,12 +313,10 @@ a {
     object-position: center;
     display: block;
 }
-
 .about-text {
     flex: 1;
     max-width: 600px;
 }
-
 .about-text p {
     margin-bottom: 1.25rem;
     line-height: 1.7;
@@ -259,27 +325,227 @@ a {
     text-align: center;
 }
 
+/* === SKILLS SECTION === */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 2rem auto 0;
+}
+.skill-item {
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 120px;
+  text-align: center;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: var(--text-secondary);
+}
+.skill-item:hover {
+  transform: translateY(-5px);
+  color: var(--accent-color);
+}
+.skill-item svg {
+  width: 48px;
+  height: 48px;
+}
+.skill-item span {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* === EDUCATION SECTION === */
+.education-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 2rem auto 0;
+}
+.education-box {
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.education-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.education-content h3 {
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+.education-content p {
+  color: var(--text-secondary);
+  margin: 0.25rem 0;
+}
+.education-content h4 {
+  color: var(--accent-color);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* === CERTIFICATES SECTION === */
+.certificates {
+  overflow-x: hidden; /* Prevent horizontal scroll on the main section */
+}
+
+.certificates-container {
+  display: grid; /* Default layout for larger screens */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 2rem auto 0;
+}
+
+.certificate-card {
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);
+  transition: transform 0.3s ease-in-out;
+}
+
+.certificate-card:hover {
+  transform: translateY(-7px);
+}
+
+.certificate-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.certificate-info {
+  padding: 1.25rem;
+}
+
+.certificate-info h3 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  /* Prevent long titles from breaking the layout */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.certificate-info p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+
+/* === MOBILE HORIZONTAL SCROLL FOR CERTIFICATES === */
+@media (max-width: 767px) { /* Adjust breakpoint if needed */
+  .certificates-container {
+    display: flex; /* Switch to flexbox for horizontal layout */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Optional: Makes scrolling snap */
+    padding-bottom: 1.5rem; /* Add padding for scrollbar visibility */
+    
+    /* Remove grid properties */
+    grid-template-columns: none; 
+    
+    /* Add negative margin to make it edge-to-edge if container has padding */
+    margin-left: -24px; 
+    margin-right: -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .certificate-card {
+    flex: 0 0 80%; /* Each card takes 80% of the viewport width */
+    max-width: 300px; /* Optional: Maximum width for a card */
+    scroll-snap-align: start; /* Optional: Snap alignment */
+  }
+
+  /* Hide scrollbar visually but keep functionality */
+  .certificates-container::-webkit-scrollbar {
+    height: 8px; /* Height of the scrollbar */
+  }
+  .certificates-container::-webkit-scrollbar-track {
+    background: transparent; /* Make track invisible */
+  }
+  .certificates-container::-webkit-scrollbar-thumb {
+    background-color: rgba(136, 146, 176, 0.4); /* Semi-transparent scrollbar thumb */
+    border-radius: 10px;
+  }
+}
 
 /* === PROJECTS SECTION === */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
+  gap: 1.5rem;
   list-style: none;
 }
 
 .project-card {
   background-color: var(--secondary-color);
-  padding: 1.75rem;
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);
   transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  overflow: hidden; /* Mahalaga ito para sa image */
 }
+
 .project-card:hover {
   transform: translateY(-7px);
+}
+
+/* Para sa image container (Wala ito dati) */
+.project-image-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Para sa status badge (Wala ito dati) */
+.project-status-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 999px;
+  color: #fff;
+  text-transform: uppercase;
+}
+.status-green { background-color: #22c55e; }
+.status-blue { background-color: #3b82f6; }
+.status-red { background-color: #ef4444; }
+.status-gray { background-color: #8892b0; }
+
+/* Para sa text content */
+.project-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
 }
 
 .project-card-header {
@@ -290,52 +556,52 @@ a {
 }
 
 .project-card-title {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
 }
+
 .project-card-title a {
-    color: var(--text-primary);
+  color: var(--text-primary);
 }
+
 .project-card-title a:hover {
-    color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 .project-card-links a {
-  margin-left: 1rem;
   color: var(--text-secondary);
 }
+
 .project-card-links a:hover {
   color: var(--accent-color);
 }
 
 .project-card-description {
-  font-size: 1rem;
+  font-size: 0.95rem;
   margin-bottom: 1rem;
+  flex-grow: 1;
 }
 
 .project-card-tech {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.75rem;
   font-family: 'Fira Code', monospace;
   font-size: 0.8rem;
   color: var(--accent-color);
+  margin-top: auto;
 }
-
 /* === CONTACT SECTION === */
 .contact {
   text-align: center;
   max-width: 600px;
 }
-
 .contact .number {
   color: var(--accent-color);
   font-family: 'Fira Code', monospace;
 }
-
 .contact .title {
   font-size: clamp(40px, 5vw, 60px);
 }
-
 .contact .description {
   margin: 1rem 0 2rem;
 }
@@ -348,49 +614,8 @@ a {
     font-size: 0.8rem;
     color: var(--text-secondary);
 }
-
 .social-sidebar, .email-sidebar {
     display: none;
-}
-
-/* === MOBILE SIDEBAR NAVIGATION === */
-.sidebar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100vh;
-  width: min(75vw, 400px);
-  background-color: var(--secondary-color);
-  box-shadow: -10px 0px 30px -15px rgba(0,0,0,0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
-  z-index: 9;
-}
-
-.sidebar.sidebar-open {
-  transform: translateX(0);
-}
-
-.sidebar-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3rem;
-  text-align: center;
-}
-
-.sidebar-links a {
-  font-size: 1.2rem;
-  font-family: 'Fira Code', monospace;
-  color: var(--text-primary);
-}
-
-.sidebar-links a:hover {
-  color: var(--accent-color);
 }
 
 /* === RESPONSIVE DESIGN === */
@@ -474,49 +699,6 @@ a {
     }
 }
 
-@media (max-width: 480px) {
-    .about-image-wrapper {
-        width: 200px;
-        height: 200px;
-    }
-}
-
-/* === EDUCATION SECTION === */
-.education-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  max-width: 800px;
-  margin: 2rem auto 0;
-}
-.education-box {
-  background-color: var(--secondary-color);
-  border-radius: 8px;
-  padding: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-.education-logo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.education-content h3 {
-  font-size: 1.2rem;
-  color: var(--text-primary);
-}
-.education-content p {
-  color: var(--text-secondary);
-  margin: 0.25rem 0;
-}
-.education-content h4 {
-  color: var(--accent-color);
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
 @media (max-width: 600px) {
   .education-box {
     flex-direction: column;
@@ -524,225 +706,9 @@ a {
   }
 }
 
-/* === SKILLS SECTION === */
-.skills-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  max-width: 800px;
-  margin: 2rem auto 0;
-}
-.skill-item {
-  background-color: var(--secondary-color);
-  border-radius: 8px;
-  padding: 1rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem; /* Inayos ang gap */
-  width: 120px;
-  text-align: center;
-  transition: transform 0.3s ease, color 0.3s ease;
-  color: var(--text-secondary); /* Default icon color */
-}
-.skill-item:hover {
-  transform: translateY(-5px);
-  color: var(--accent-color); /* Magbabago ang kulay ng icon pag-hover */
-}
-
-/* Ito ang nag-style sa icon mismo */
-.skill-item svg {
-  width: 48px;
-  height: 48px;
-}
-
-.skill-item span {
-  color: var(--text-primary);
-  font-weight: 500;
-}
-
-/* === SCROLL ANIMATION STYLES === */
-
-/* This is the starting state of the section (hidden) */
-.section-animation {
-  opacity: 0;
-  transform: translateY(50px); /* Start 50px below its final position */
-  transition: opacity 0.8s ease-out, transform 0.6s ease-out;
-}
-
-/* This is the final state when the 'visible' class is added (visible) */
-.section-animation.visible {
-  opacity: 1;
-  transform: translateY(0); /* Move to its final position */
-}
-
-/* === NEW SCROLL ANIMATION STYLES === */
-
-/* Ang base state ng bawat item na ia-animate (nakatago) */
-.animate-item {
-  opacity: 0;
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-/* Mga iba't ibang starting positions */
-.fade-in-up {
-  transform: translateY(50px);
-}
-.fade-in-left {
-  transform: translateX(-50px);
-}
-.fade-in-right {
-  transform: translateX(50px);
-}
-
-/* Ang final state kapag visible na (lumabas na) */
-.animate-item.visible {
-  opacity: 1;
-  transform: translate(0, 0);
-}
-
-/* === PROJECTS SECTION (Updated) === */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem; /* Increased gap */
-  list-style: none;
-}
-
-.project-card {
-  background-color: var(--secondary-color);
-  border-radius: 8px; /* Slightly more rounded */
-  box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden; /* Important for image */
-}
-.project-card:hover {
-  transform: translateY(-7px);
-}
-
-/* New styles for image container */
-.project-image-container {
-  position: relative;
-  width: 100%;
-  height: 180px;
-}
-.project-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center; /* Focus on the top part of the image */
-}
-
-/* New styles for the status badge */
-.project-status-badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 4px 10px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: 999px;
-  color: #fff;
-  text-transform: uppercase;
-}
-.status-green { background-color: #22c55e; }
-.status-blue { background-color: #3b82f6; }
-.status-red { background-color: #ef4444; }
-.status-gray { background-color: #8892b0; }
-
-
-/* Styles for the text content below the image */
-.project-content {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1; /* Makes the card fill height */
-}
-
-.project-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.project-card-title {
-  font-size: 1.25rem; /* Slightly smaller title */
-}
-.project-card-title a {
-    color: var(--text-primary);
-}
-.project-card-title a:hover {
-    color: var(--accent-color);
-}
-
-.project-card-links a {
-  color: var(--text-secondary);
-}
-.project-card-links a:hover {
-  color: var(--accent-color);
-}
-
-.project-card-description {
-  font-size: 0.95rem; /* Slightly smaller description */
-  margin-bottom: 1rem;
-  flex-grow: 1;
-}
-
-.project-card-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem; /* Smaller gap */
-  font-family: 'Fira Code', monospace;
-  font-size: 0.8rem;
-  color: var(--accent-color);
-  margin-top: auto; /* Pushes tech to the bottom */
-}
-
-/* === CERTIFICATES SECTION === */
-.certificates-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  max-width: 1000px;
-  margin: 2rem auto 0;
-}
-
-.certificate-card {
-  background-color: var(--secondary-color);
-  border-radius: 8px;
-  overflow: hidden;
-  text-decoration: none;
-  box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);
-  transition: transform 0.3s ease-in-out;
-}
-
-.certificate-card:hover {
-  transform: translateY(-7px);
-}
-
-.certificate-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  display: block;
-}
-
-.certificate-info {
-  padding: 1.25rem;
-}
-
-.certificate-info h3 {
-  color: var(--text-primary);
-  font-size: 1.1rem;
-  margin-bottom: 0.25rem;
-}
-
-.certificate-info p {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
+@media (max-width: 480px) {
+    .about-image-wrapper {
+        width: 200px;
+        height: 200px;
+    }
 }
