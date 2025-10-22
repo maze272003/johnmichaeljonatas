@@ -702,3 +702,47 @@ a {
   color: var(--accent-color);
   margin-top: auto; /* Pushes tech to the bottom */
 }
+
+/* === CERTIFICATES SECTION === */
+.certificates-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 2rem auto 0;
+}
+
+.certificate-card {
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);
+  transition: transform 0.3s ease-in-out;
+}
+
+.certificate-card:hover {
+  transform: translateY(-7px);
+}
+
+.certificate-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.certificate-info {
+  padding: 1.25rem;
+}
+
+.certificate-info h3 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.certificate-info p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}

@@ -88,7 +88,7 @@ function Projects() {
   return (
     <section id="projects" className="projects" ref={ref}>
       <h2 className={`section-title animate-item ${inView ? 'visible fade-in-up' : 'fade-in-up'}`}>
-        <span className="number">04.</span>
+        <span className="number">05.</span>
         My Projects
       </h2>
       <ul className="projects-grid">
