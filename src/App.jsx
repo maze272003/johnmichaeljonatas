@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
+// Import Driver.js
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
+
 // Import all your components
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -17,14 +21,48 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Hide the preloader after 3 seconds
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 3000);
-
-    // Cleanup the timer if the component unmounts
     return () => clearTimeout(timer);
-  }, []); // The empty array ensures this effect runs only once on mount
+  }, []);
+
+  // New useEffect for the tour logic
+  useEffect(() => {
+    if (!isLoading) {
+      const isTourCompleted = localStorage.getItem('portfolioTourCompleted');
+
+      if (isTourCompleted !== 'true') {
+        const driverObj = driver({
+          showProgress: true,
+          showButtons: ['next', 'previous', 'close'],
+          
+          // --- THIS IS THE CORRECTED PART ---
+          // This function now runs cleanly whenever the tour is closed for any reason
+          // (either by clicking "X" or the "Done" button).
+          onDestroyed: () => {
+            localStorage.setItem('portfolioTourCompleted', 'true');
+          },
+          // ------------------------------------
+
+          steps: [
+            { element: '.hero', popover: { title: 'Welcome!', description: "Hi there! I'm JM. Welcome to my personal portfolio. Let me give you a quick tour." } },
+            { element: '.about-content', popover: { title: 'About Me', description: 'Here you can learn a little more about my journey and passion for development.' } },
+            { element: '.skills-container', popover: { title: 'My Skills', description: 'This section showcases the technologies and tools I work with.' } },
+            { element: '.certificates-wrapper', popover: { title: 'Certificates', description: 'This carousel automatically scrolls through my certifications. You can also scroll it manually or double-tap any certificate to see a full preview!' } },
+            { element: '.projects-grid', popover: { title: 'My Projects', description: 'Here are some of the projects I\'ve built. Feel free to double-tap any project card to view its image.' } },
+            { element: '#contact', popover: { title: 'Get In Touch', description: "Let's connect! You can reach me through my email here." } },
+            { element: '.social-sidebar', popover: { title: 'Social Links', description: "You can also find my social and professional links right here on the side." } }
+          ]
+        });
+
+        setTimeout(() => {
+          driverObj.drive();
+        }, 500);
+      }
+    }
+  }, [isLoading]);
+
 
   return (
     <>

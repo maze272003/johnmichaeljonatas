@@ -9,6 +9,19 @@
   --text-primary: #ccd6f6; /* Light Slate */
   --text-secondary: #8892b0;/* Slate */
   --header-height: 80px;
+
+  /* Variables for Driver.js Tour */
+  --driver-popover-bg: var(--secondary-color);
+  --driver-popover-border-color: var(--accent-color);
+  --driver-popover-title-color: var(--text-primary);
+  --driver-popover-description-color: var(--text-secondary);
+  --driver-popover-arrow-color: var(--secondary-color);
+  --driver-button-text-color: var(--primary-color);
+  --driver-button-bg: var(--accent-color);
+  --driver-button-hover-bg: #a8ffeb; /* Lighter accent color */
+  --driver-button-secondary-text-color: var(--accent-color);
+  --driver-button-secondary-bg: transparent;
+  --driver-button-secondary-hover-bg: rgba(100, 255, 218, 0.1);
 }
 
 /* === BASE STYLES === */
@@ -54,7 +67,7 @@ a {
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-/* === HEADER (Updated) === */
+/* === HEADER === */
 .header {
   position: fixed;
   top: 0;
@@ -107,7 +120,6 @@ a {
   color: var(--accent-color);
 }
 
-/* Underline hover effect for nav links */
 .nav-links a:not(.resume-button)::after {
     content: '';
     position: absolute;
@@ -125,7 +137,6 @@ a {
     transform: scaleX(1);
 }
 
-/* Resume Button Style for Desktop */
 .resume-button {
     color: var(--accent-color) !important;
     border: 1px solid var(--accent-color);
@@ -148,7 +159,7 @@ a {
 }
 
 
-/* === MOBILE SIDEBAR NAVIGATION (Updated) === */
+/* === MOBILE SIDEBAR NAVIGATION === */
 .sidebar {
   position: fixed;
   top: 0;
@@ -189,7 +200,6 @@ a {
   color: var(--accent-color);
 }
 
-/* Resume Button Style for Mobile */
 .resume-button-mobile {
     margin-top: 1rem;
     font-size: 1.2rem !important;
@@ -271,14 +281,13 @@ a {
     font-weight: normal;
 }
 
-/* === ABOUT SECTION (Updated) === */
+/* === ABOUT SECTION === */
 .about {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center all content by default for mobile */
+    align-items: center;
     text-align: center;
 }
-
 .about-content {
     display: flex;
     flex-direction: column;
@@ -288,7 +297,6 @@ a {
     max-width: 1000px;
     margin: 0 auto;
 }
-
 .about-image-wrapper {
     position: relative;
     width: 250px;
@@ -299,12 +307,10 @@ a {
     box-shadow: 0 0 0 7px rgba(100, 255, 218, 0.2);
     transition: all 0.3s ease;
 }
-
 .about-image-wrapper:hover {
     box-shadow: 0 0 0 10px rgba(100, 255, 218, 0.4);
     transform: scale(1.02);
 }
-
 .profile-image {
     width: 100%;
     height: 100%;
@@ -312,16 +318,13 @@ a {
     object-position: center;
     display: block;
 }
-
 .about-text {
     flex: 1;
     max-width: 600px;
 }
-
 .about-text h3 {
     margin-bottom: 1rem;
 }
-
 .about-text p {
     margin-bottom: 1.25rem;
     line-height: 1.7;
@@ -329,6 +332,7 @@ a {
     color: var(--text-secondary);
     text-align: center;
 }
+
 /* === SKILLS SECTION === */
 .skills-container {
   display: flex;
@@ -400,37 +404,26 @@ a {
   font-weight: 500;
 }
 
-/* === CERTIFICATES SECTION (with JS Scroll) === */
-
-.certificates {
-  padding-top: 100px;
-  padding-bottom: 100px;
-}
-
-/* Wrapper to hide the overflow and create fade effect */
+/* === CERTIFICATES SECTION === */
 .certificates-wrapper {
   margin-top: 2rem;
   overflow: hidden;
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
-
-/* The scrollable container */
 .certificates-scroll-container {
   display: flex;
-  overflow-x: auto; /* Enable manual scrolling */
-  padding-bottom: 1.5rem; /* Space for scrollbar */
-  /* Hide the default scrollbar visually */
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+  overflow-x: auto;
+  padding-bottom: 1.5rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 .certificates-scroll-container::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
+  display: none;
 }
-
 .certificate-card {
-  width: 300px; /* Fixed width */
-  flex-shrink: 0; /* Prevent cards from shrinking */
+  width: 300px;
+  flex-shrink: 0;
   margin-right: 20px;
   background-color: var(--secondary-color);
   border-radius: 8px;
@@ -439,22 +432,18 @@ a {
   box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);
   transition: transform 0.3s ease-in-out;
 }
-
 .certificate-card:hover {
   transform: translateY(-7px);
 }
-
 .certificate-image {
   width: 100%;
   height: 180px;
   object-fit: cover;
   display: block;
 }
-
 .certificate-info {
   padding: 1.25rem;
 }
-
 .certificate-info h3 {
   color: var(--text-primary);
   font-size: 1.1rem;
@@ -463,133 +452,9 @@ a {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .certificate-info p {
   color: var(--text-secondary);
   font-size: 0.9rem;
-}
-
-/* On larger screens, revert to a grid layout */
-@media (min-width: 768px) {
-  .certificates-wrapper {
-    -webkit-mask-image: none;
-    mask-image: none;
-    overflow: visible;
-  }
-
-  .certificates-scroll-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    overflow-x: visible; /* Disable scroll on desktop */
-    padding-bottom: 0;
-  }
-
-  .certificate-card {
-    width: auto;
-    margin-right: 0;
-  }
-}
-
-/* === CERTIFICATE MODAL (PREVIEW) === */
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(10, 25, 47, 0.85); /* Dark blue with transparency */
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Ensure it's on top of everything */
-  padding: 20px;
-}
-
-.modal-content {
-  position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
-}
-
-.modal-image {
-  width: 100%;
-  height: 100%;
-  max-width: 1200px; /* Maximum width of the image */
-  max-height: 80vh; /* Maximum height to leave space */
-  object-fit: contain; /* Fit the entire image without cropping */
-  border-radius: 8px;
-}
-
-.modal-close-btn {
-  position: absolute;
-  top: -15px;
-  right: -15px;
-  background-color: var(--secondary-color);
-  color: var(--text-primary);
-  border: 2px solid var(--accent-color);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.modal-close-btn:hover {
-  background-color: var(--accent-color);
-  color: var(--primary-color);
-  transform: rotate(90deg);
-}
-
-@media (max-width: 600px) {
-  .modal-close-btn {
-    top: 5px;
-    right: 5px;
-  }
-}
-
-/* === MOBILE HORIZONTAL SCROLL FOR CERTIFICATES === */
-@media (max-width: 767px) { /* Adjust breakpoint if needed */
-  .certificates-container {
-    display: flex; /* Switch to flexbox for horizontal layout */
-    overflow-x: auto; /* Enable horizontal scrolling */
-    scroll-snap-type: x mandatory; /* Optional: Makes scrolling snap */
-    padding-bottom: 1.5rem; /* Add padding for scrollbar visibility */
-    
-    /* Remove grid properties */
-    grid-template-columns: none; 
-    
-    /* Add negative margin to make it edge-to-edge if container has padding */
-    margin-left: -24px; 
-    margin-right: -24px;
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-
-  .certificate-card {
-    flex: 0 0 80%; /* Each card takes 80% of the viewport width */
-    max-width: 300px; /* Optional: Maximum width for a card */
-    scroll-snap-align: start; /* Optional: Snap alignment */
-  }
-
-  /* Hide scrollbar visually but keep functionality */
-  .certificates-container::-webkit-scrollbar {
-    height: 8px; /* Height of the scrollbar */
-  }
-  .certificates-container::-webkit-scrollbar-track {
-    background: transparent; /* Make track invisible */
-  }
-  .certificates-container::-webkit-scrollbar-thumb {
-    background-color: rgba(136, 146, 176, 0.4); /* Semi-transparent scrollbar thumb */
-    border-radius: 10px;
-  }
 }
 
 /* === PROJECTS SECTION === */
@@ -599,7 +464,6 @@ a {
   gap: 1.5rem;
   list-style: none;
 }
-
 .project-card {
   background-color: var(--secondary-color);
   border-radius: 8px;
@@ -607,28 +471,22 @@ a {
   transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Mahalaga ito para sa image */
+  overflow: hidden;
 }
-
 .project-card:hover {
   transform: translateY(-7px);
 }
-
-/* Para sa image container (Wala ito dati) */
 .project-image-container {
   position: relative;
   width: 100%;
   height: 180px;
 }
-
 .project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
 }
-
-/* Para sa status badge (Wala ito dati) */
 .project-status-badge {
   position: absolute;
   top: 10px;
@@ -644,8 +502,6 @@ a {
 .status-blue { background-color: #3b82f6; }
 .status-red { background-color: #ef4444; }
 .status-gray { background-color: #8892b0; }
-
-/* Para sa text content */
 .project-content {
   padding: 1.5rem;
   display: flex;
@@ -653,40 +509,32 @@ a {
   justify-content: space-between;
   flex-grow: 1;
 }
-
 .project-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
-
 .project-card-title {
   font-size: 1.25rem;
 }
-
 .project-card-title a {
-  color: var(--text-primary);
+    color: var(--text-primary);
 }
-
 .project-card-title a:hover {
-  color: var(--accent-color);
+    color: var(--accent-color);
 }
-
 .project-card-links a {
   color: var(--text-secondary);
 }
-
 .project-card-links a:hover {
   color: var(--accent-color);
 }
-
 .project-card-description {
   font-size: 0.95rem;
   margin-bottom: 1rem;
   flex-grow: 1;
 }
-
 .project-card-tech {
   display: flex;
   flex-wrap: wrap;
@@ -696,6 +544,7 @@ a {
   color: var(--accent-color);
   margin-top: auto;
 }
+
 /* === CONTACT SECTION === */
 .contact {
   text-align: center;
@@ -722,6 +571,72 @@ a {
 }
 .social-sidebar, .email-sidebar {
     display: none;
+}
+
+/* === IMAGE PREVIEW MODAL === */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 25, 47, 0.85);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+.modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+.modal-image {
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.modal-close-btn {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background-color: var(--secondary-color);
+  color: var(--text-primary);
+  border: 2px solid var(--accent-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+.modal-close-btn:hover {
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+  transform: rotate(90deg);
+}
+
+/* === DRIVER.JS TOUR STYLES === */
+.driver-popover {
+  border: 1px solid var(--driver-popover-border-color);
+  font-family: 'Inter', sans-serif;
+}
+.driver-popover-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.driver-popover-close-btn {
+  color: var(--text-secondary);
+}
+.driver-popover-close-btn:hover {
+  color: var(--accent-color);
 }
 
 /* === RESPONSIVE DESIGN === */
@@ -791,6 +706,26 @@ a {
         align-self: flex-start;
         text-align: left;
     }
+    
+    .certificates-wrapper {
+      -webkit-mask-image: none;
+      mask-image: none;
+      overflow: visible;
+    }
+    .certificates-scroll-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow-x: visible;
+      padding-bottom: 0;
+    }
+    .certificate-card {
+      width: auto;
+      margin-right: 0;
+    }
 }
 
 @media (max-width: 768px) {
@@ -809,6 +744,10 @@ a {
   .education-box {
     flex-direction: column;
     text-align: center;
+  }
+  .modal-close-btn {
+    top: 5px;
+    right: 5px;
   }
 }
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import CertificateModal from './CertificateModal';
 
 // Import your certificate images
@@ -14,21 +14,39 @@ const certificatesData = [
   { id: 3, title: 'Innovex 2025', issuer: 'International Presentation', imageUrl: innovex, link: '#' },
 ];
 
+// Step 1: Add a custom hook to check screen size
+const useIsMobile = (breakpoint = 768) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < breakpoint);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [breakpoint]);
+
+  return isMobile;
+};
+
+
 function Certificates() {
   const { ref: sectionRef, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const [selectedCert, setSelectedCert] = useState(null);
-
-  // Ref para sa double tap logic sa mobile
   const lastTap = useRef(0);
+  
+  const isMobile = useIsMobile(); // <-- Use the hook here
 
-  // (Lahat ng code para sa auto-scroll ay mananatili dito)
   const scrollContainerRef = useRef(null);
   const autoScrollIntervalRef = useRef(null);
   const restartTimerRef = useRef(null);
 
+  // Auto-scroll logic now only runs if isMobile is true
   useEffect(() => {
     const container = scrollContainerRef.current;
-    if (!container) return;
+    if (!container || !isMobile) { // <-- Check if it's mobile
+      return; // Do nothing on desktop
+    }
     
     const startAutoScroll = () => {
       clearInterval(autoScrollIntervalRef.current);
@@ -64,7 +82,7 @@ function Certificates() {
       clearInterval(autoScrollIntervalRef.current);
       clearTimeout(restartTimerRef.current);
     };
-  }, []);
+  }, [isMobile]); // Re-run effect if screen size changes across the breakpoint
 
   const handleDoubleClick = (imageUrl) => {
     setSelectedCert(imageUrl);
@@ -73,17 +91,17 @@ function Certificates() {
   const closeModal = () => {
     setSelectedCert(null);
   };
-
-  // BAGONG FUNCTION para sa mobile touch
+  
   const handleTouchEnd = (imageUrl) => {
     const now = new Date().getTime();
-    const timeSinceLastTap = now - lastTap.current;
-    if (timeSinceLastTap < 300 && timeSinceLastTap > 0) {
-      // Kung ang tap ay mas mabilis sa 300ms, consider it a double tap
+    if (now - lastTap.current < 300) {
       handleDoubleClick(imageUrl);
     }
     lastTap.current = now;
   };
+
+  // Step 2: Conditionally choose which array to display
+  const certsToDisplay = isMobile ? [...certificatesData, ...certificatesData] : certificatesData;
 
   return (
     <>
@@ -106,12 +124,13 @@ function Certificates() {
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            {[...certificatesData, ...certificatesData].map((cert, index) => (
+            {/* Step 3: Map over the correct array */}
+            {certsToDisplay.map((cert, index) => (
               <div 
                 key={`${cert.id}-${index}`}
                 className="certificate-card"
-                onDoubleClick={() => handleDoubleClick(cert.imageUrl)} // Para sa Desktop
-                onTouchEnd={() => handleTouchEnd(cert.imageUrl)}      // Para sa Mobile
+                onDoubleClick={() => handleDoubleClick(cert.imageUrl)}
+                onTouchEnd={() => handleTouchEnd(cert.imageUrl)}
               >
                 <img src={cert.imageUrl} alt={cert.title} className="certificate-image" />
                 <div className="certificate-info">
@@ -124,9 +143,11 @@ function Certificates() {
         </div>
       </section>
 
-      {selectedCert && (
-        <CertificateModal imageUrl={selectedCert} onClose={closeModal} />
-      )}
+      <AnimatePresence>
+        {selectedCert && (
+          <CertificateModal imageUrl={selectedCert} onClose={closeModal} />
+        )}
+      </AnimatePresence>
     </>
   );
 }
