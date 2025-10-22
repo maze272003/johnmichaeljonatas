@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 function Header() {
@@ -50,26 +51,10 @@ function Header() {
 
       <nav className={isMenuOpen ? 'sidebar sidebar-open' : 'sidebar'}>
         <ul className="sidebar-links">
-          <li>
-            <a href="#about" onClick={() => scrollToSection('about')}>
-              <span className="nav-link-number">01.</span> About
-            </a>
-          </li>
-          <li>
-            <a href="#skills" onClick={() => scrollToSection('skills')}>
-              <span className="nav-link-number">02.</span> Skills
-            </a>
-          </li>
-          <li>
-            <a href="#projects" onClick={() => scrollToSection('projects')}>
-              <span className="nav-link-number">03.</span> Projects
-            </a>
-          </li>
-          <li>
-            <a href="#contact" onClick={() => scrollToSection('contact')}>
-              <span className="nav-link-number">04.</span> Contact
-            </a>
-          </li>
+          <li><a href="#about" onClick={() => scrollToSection('about')}><span className="nav-link-number">01.</span> About</a></li>
+          <li><a href="#skills" onClick={() => scrollToSection('skills')}><span className="nav-link-number">02.</span> Skills</a></li>
+          <li><a href="#projects" onClick={() => scrollToSection('projects')}><span className="nav-link-number">03.</span> Projects</a></li>
+          <li><a href="#contact" onClick={() => scrollToSection('contact')}><span className="nav-link-number">04.</span> Contact</a></li>
         </ul>
       </nav>
     </>

@@ -1,8 +1,7 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
-import {
-  FaPython, FaPhp, FaLaravel, FaJava, FaJsSquare, FaNodeJs, FaReact
-} from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaPython, FaPhp, FaLaravel, FaJava, FaJsSquare, FaNodeJs, FaReact } from 'react-icons/fa';
 import { SiAndroidstudio, SiUnity, SiExpo } from 'react-icons/si';
 
 const skillsData = [
@@ -18,27 +17,38 @@ const skillsData = [
   { name: 'Expo', icon: <SiExpo /> },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
 function Skills() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
     <section id="skills" className="skills" ref={ref}>
-      <h2 className={`section-title animate-item ${inView ? 'visible fade-in-up' : 'fade-in-up'}`}>
+      <h2 className="section-title">
         <span className="number">02.</span>
         Skills & Abilities
       </h2>
-      <div className="skills-container">
-        {skillsData.map((skill, index) => (
-          <div 
-            key={skill.name} 
-            className={`skill-item animate-item ${inView ? 'visible fade-in-up' : 'fade-in-up'}`}
-            style={{ transitionDelay: `${index * 100}ms` }}
-          >
+      <motion.div 
+        className="skills-container"
+        variants={containerVariants}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
+      >
+        {skillsData.map((skill) => (
+          <motion.div key={skill.name} variants={itemVariants} className="skill-item">
             {skill.icon}
             <span>{skill.name}</span>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -4,10 +4,9 @@ import { Github, Linkedin } from 'lucide-react';
 function Footer() {
   return (
     <>
-      {/* These will only appear on desktop screens due to CSS */}
       <div className="social-sidebar">
-        <a href="https://github.com/yourusername" aria-label="GitHub"><Github /></a>
-        <a href="https://linkedin.com/in/yourprofile" aria-label="LinkedIn"><Linkedin /></a>
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github /></a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin /></a>
       </div>
 
       <div className="email-sidebar">
