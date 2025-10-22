@@ -5,8 +5,8 @@ function Footer() {
   return (
     <>
       <div className="social-sidebar">
-        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github /></a>
-        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin /></a>
+        <a href="https://github.com/maze272003" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Github /></a>
+        <a href="https://www.linkedin.com/in/john-michael-jonatas-683405390?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><Linkedin /></a>
       </div>
 
       <div className="email-sidebar">

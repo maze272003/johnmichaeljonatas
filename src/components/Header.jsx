@@ -53,9 +53,9 @@ function Header() {
             </li>
           ))}
           <li>
-            <a href="/JM-Resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-button">
+            {/* <a href="/JM-Resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-button">
               Resume
-            </a>
+            </a> */}
           </li>
         </ul>
       </nav>
@@ -86,9 +86,9 @@ function Header() {
                   </li>
                 ))}
                 <li>
-                  <a href="/JM-Resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-button-mobile">
+                  {/* <a href="/JM-Resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-button-mobile">
                     Resume
-                  </a>
+                  </a> */}
                 </li>
               </ul>
             </nav>

@@ -41,7 +41,7 @@ function About() {
           <p>
             Welcome to my portfolio! I am dedicated to improving my skills and love building innovative projects in the Full-Tank development ecosystem.
           </p>
-          <a href="#" className="cta-button" style={{ marginTop: '1rem' }}>View Resume</a>
+          {/* <a href="#" className="cta-button" style={{ marginTop: '1rem' }}>View Resume</a> */}
         </motion.div>
       </div>
     </motion.section>
