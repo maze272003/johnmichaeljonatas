@@ -400,20 +400,38 @@ a {
   font-weight: 500;
 }
 
-/* === CERTIFICATES SECTION === */
+/* === CERTIFICATES SECTION (with JS Scroll) === */
+
 .certificates {
-  overflow-x: hidden; /* Prevent horizontal scroll on the main section */
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
-.certificates-container {
-  display: grid; /* Default layout for larger screens */
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  max-width: 1000px;
-  margin: 2rem auto 0;
+/* Wrapper to hide the overflow and create fade effect */
+.certificates-wrapper {
+  margin-top: 2rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* The scrollable container */
+.certificates-scroll-container {
+  display: flex;
+  overflow-x: auto; /* Enable manual scrolling */
+  padding-bottom: 1.5rem; /* Space for scrollbar */
+  /* Hide the default scrollbar visually */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+}
+.certificates-scroll-container::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
 }
 
 .certificate-card {
+  width: 300px; /* Fixed width */
+  flex-shrink: 0; /* Prevent cards from shrinking */
+  margin-right: 20px;
   background-color: var(--secondary-color);
   border-radius: 8px;
   overflow: hidden;
@@ -441,7 +459,6 @@ a {
   color: var(--text-primary);
   font-size: 1.1rem;
   margin-bottom: 0.25rem;
-  /* Prevent long titles from breaking the layout */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -452,6 +469,30 @@ a {
   font-size: 0.9rem;
 }
 
+/* On larger screens, revert to a grid layout */
+@media (min-width: 768px) {
+  .certificates-wrapper {
+    -webkit-mask-image: none;
+    mask-image: none;
+    overflow: visible;
+  }
+
+  .certificates-scroll-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow-x: visible; /* Disable scroll on desktop */
+    padding-bottom: 0;
+  }
+
+  .certificate-card {
+    width: auto;
+    margin-right: 0;
+  }
+}
 
 /* === MOBILE HORIZONTAL SCROLL FOR CERTIFICATES === */
 @media (max-width: 767px) { /* Adjust breakpoint if needed */
