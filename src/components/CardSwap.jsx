@@ -1,4 +1,4 @@
-import React, { Children, cloneElement, forwardRef, isValidElement, useEffect, useMemo, useRef, useCallback } from 'react';
+import React, { Children, cloneElement, forwardRef, isValidElement, useEffect, useMemo, useRef, useCallback, useState } from 'react'; // <-- IMPORT useState
 import gsap from 'gsap';
 import { motion } from 'framer-motion';
 import './CardSwap.css';
@@ -8,6 +8,22 @@ export const Card = forwardRef(({ customClass, ...rest }, ref) => (
 ));
 Card.displayName = 'Card';
 
+// --- BAGONG HELPER HOOK para malaman kung mobile ang screen ---
+const useIsMobile = (breakpoint = 768) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < breakpoint);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [breakpoint]);
+
+  return isMobile;
+};
+// -----------------------------------------------------------
+
 const makeSlot = (i, distX, distY, total) => ({
   x: i * distX,
   y: -i * distY,
@@ -16,11 +32,8 @@ const makeSlot = (i, distX, distY, total) => ({
 });
 const placeNow = (el, slot, skew) =>
   gsap.set(el, {
-    x: slot.x,
-    y: slot.y,
-    z: slot.z,
-    xPercent: -50,
-    yPercent: -50,
+    x: slot.x, y: slot.y, z: slot.z,
+    xPercent: -50, yPercent: -50,
     skewY: skew,
     transformOrigin: 'center center',
     zIndex: slot.zIndex,
@@ -39,32 +52,15 @@ const CardSwap = ({
   easing = 'elastic',
   children
 }) => {
+  const isMobile = useIsMobile(); // <-- Gamitin ang hook para malaman kung mobile
+
   const config =
     easing === 'elastic'
-      ? {
-          ease: 'elastic.out(0.6,0.9)',
-          durDrop: 2,
-          durMove: 2,
-          durReturn: 2,
-          promoteOverlap: 0.9,
-          returnDelay: 0.05
-        }
-      : {
-          ease: 'power1.inOut',
-          durDrop: 0.8,
-          durMove: 0.8,
-          durReturn: 0.8,
-          promoteOverlap: 0.45,
-          returnDelay: 0.2
-        };
+      ? { ease: 'elastic.out(0.6,0.9)', durDrop: 2, durMove: 2, durReturn: 2, promoteOverlap: 0.9, returnDelay: 0.05 }
+      : { ease: 'power1.inOut', durDrop: 0.8, durMove: 0.8, durReturn: 0.8, promoteOverlap: 0.45, returnDelay: 0.2 };
 
   const childArr = useMemo(() => Children.toArray(children), [children]);
-  const refs = useMemo(
-    () => childArr.map(() => React.createRef()),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [childArr.length]
-  );
-
+  const refs = useMemo(() => childArr.map(() => React.createRef()), [childArr.length]);
   const order = useRef(Array.from({ length: childArr.length }, (_, i) => i));
   const tlRef = useRef(null);
   const intervalRef = useRef();
@@ -95,7 +91,7 @@ const CardSwap = ({
     });
   }, [cardDistance, verticalDistance, config, refs]);
   
-  const handleSwipe = () => {
+  const handleManualSwap = () => {
     clearInterval(intervalRef.current);
     swap();
     intervalRef.current = window.setInterval(swap, delay);
@@ -106,7 +102,7 @@ const CardSwap = ({
     refs.forEach((r, i) => placeNow(r.current, makeSlot(i, cardDistance, verticalDistance, total), skewAmount));
     intervalRef.current = window.setInterval(swap, delay);
 
-    if (pauseOnHover) {
+    if (pauseOnHover && !isMobile) { // Pause on hover lang sa desktop
       const node = container.current;
       const pause = () => {
         tlRef.current?.pause();
@@ -125,7 +121,7 @@ const CardSwap = ({
       };
     }
     return () => clearInterval(intervalRef.current);
-  }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing, config, refs, swap]);
+  }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing, config, refs, swap, isMobile]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement(child)
@@ -146,15 +142,18 @@ const CardSwap = ({
       ref={container}
       className="card-swap-container"
       style={{ width, height }}
-      // --- ITO ANG BINAGO ---
       onPanEnd={(event, info) => {
-        // Titingnan natin kung ang vertical swipe ay pababa at malakas
-        // Ang info.offset.y ay positive kapag pababa ang swipe
+        // Vertical swipe down (positive y offset)
         if (info.offset.y > 50) { 
-          handleSwipe();
+          handleManualSwap();
         }
       }}
-      // ---------------------
+      // --- ITO ANG BAGONG LOGIC para sa single tap ---
+      onTap={() => {
+        if (isMobile) {
+          handleManualSwap();
+        }
+      }}
     >
       {rendered}
     </motion.div>
