@@ -499,37 +499,69 @@ a {
   font-size: 0.9rem;
 }
 
-/* === PROJECTS SECTION === */
-.projects-grid {
+/* === PROJECTS SECTION (Card Swap) === */
+.projects-section-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  list-style: none;
-}
-.project-card {
-  background-color: var(--secondary-color);
-  border-radius: 8px;
-  box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
+  grid-template-columns: 1fr; /* Default to single column for mobile first */
+  align-items: center;
+  gap: 0; /* Reduced gap */
   overflow: hidden;
+  min-height: 100vh; /* Ensure it takes full height */
 }
-.project-card:hover {
-  transform: translateY(-7px);
+
+.projects-text-content {
+  max-width: 450px;
+  text-align: center; /* Center text on mobile */
+  z-index: 2;
+  margin: 0 auto; /* Center the block itself */
 }
-.project-image-container {
+
+.projects-description {
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* This wrapper will center the animation */
+.projects-card-swap-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 500px; /* Adjust height for mobile */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+/* On larger screens, use a two-column layout */
+@media (min-width: 992px) {
+  .projects-section-container {
+    grid-template-columns: 1fr 1fr; /* Switch to two columns */
+    gap: 2rem;
+  }
+  .projects-text-content {
+    text-align: left; /* Align text left on desktop */
+    margin: 0;
+  }
+  .projects-card-swap-wrapper {
+    min-height: 600px; /* More space on desktop */
+    margin-top: 0;
+  }
+}
+
+/* Keep the styles for the content inside each card */
+.project-card .project-image-container {
   position: relative;
   width: 100%;
   height: 180px;
 }
-.project-image {
+.project-card .project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
 }
-.project-status-badge {
+.project-card .project-status-badge {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -540,44 +572,46 @@ a {
   color: #fff;
   text-transform: uppercase;
 }
-.status-green { background-color: #22c55e; }
-.status-blue { background-color: #3b82f6; }
-.status-red { background-color: #ef4444; }
-.status-gray { background-color: #8892b0; }
-.project-content {
+.project-card .status-green { background-color: #22c55e; }
+.project-card .status-blue { background-color: #3b82f6; }
+.project-card .status-red { background-color: #ef4444; }
+.project-card .status-gray { background-color: #8892b0; }
+
+.project-card .project-content {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
 }
-.project-card-header {
+.project-card .project-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
-.project-card-title {
+.project-card .project-card-title {
   font-size: 1.25rem;
 }
-.project-card-title a {
+.project-card .project-card-title a {
     color: var(--text-primary);
 }
-.project-card-title a:hover {
+.project-card .project-card-title a:hover {
     color: var(--accent-color);
 }
-.project-card-links a {
+.project-card .project-card-links a {
   color: var(--text-secondary);
 }
-.project-card-links a:hover {
+.project-card .project-card-links a:hover {
   color: var(--accent-color);
 }
-.project-card-description {
+.project-card .project-card-description {
   font-size: 0.95rem;
   margin-bottom: 1rem;
   flex-grow: 1;
+  color: var(--text-secondary);
 }
-.project-card-tech {
+.project-card .project-card-tech {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
@@ -586,7 +620,6 @@ a {
   color: var(--accent-color);
   margin-top: auto;
 }
-
 /* === CONTACT SECTION === */
 .contact {
   text-align: center;

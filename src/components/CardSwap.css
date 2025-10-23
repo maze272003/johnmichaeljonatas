@@ -1,0 +1,39 @@
+.card-swap-container {
+  /* We removed position: absolute, bottom, right, and transform. */
+  /* The component will now sit naturally inside its parent container. */
+  perspective: 900px;
+  overflow: visible;
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 12px;
+  border: 1px solid var(--accent-color);
+  background: var(--secondary-color);
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+/* Responsive scaling for the animation on smaller screens */
+@media (max-width: 1200px) {
+  .card-swap-container {
+    transform: scale(0.9);
+  }
+}
+
+@media (max-width: 991px) {
+  .card-swap-container {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 576px) {
+  .card-swap-container {
+    transform: scale(0.65);
+  }
+}
