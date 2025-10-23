@@ -89,14 +89,14 @@ a {
   box-shadow: 0 10px 30px -10px rgba(0,0,0,0.7);
 }
 
-.header-logo {
-  color: var(--accent-color);
-  font-size: 1.5rem;
-  font-weight: bold;
-  font-family: 'Fira Code', monospace;
+.portfolio-logo {
+  height: 50px;
+  width: auto;
+  transition: transform 0.3s ease;
 }
-.header-logo:hover {
-    color: #a8ffeb;
+
+.portfolio-logo:hover {
+  transform: scale(1.05);
 }
 
 .nav-links {
@@ -333,39 +333,81 @@ a {
     text-align: center;
 }
 
-/* === SKILLS SECTION === */
-.skills-container {
+/* === SKILLS SECTION (3D Keycaps) === */
+.skills {
+  overflow: hidden;
+}
+
+.skills-keycap-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5rem;
-  max-width: 800px;
-  margin: 2rem auto 0;
+  gap: 2rem 1.5rem;
+  margin-top: 4rem;
+  perspective: 1000px;
+  transform: rotateX(15deg);
 }
-.skill-item {
-  background-color: var(--secondary-color);
-  border-radius: 8px;
-  padding: 1rem 1.5rem;
+
+.keycap-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  width: 120px;
-  text-align: center;
-  transition: transform 0.3s ease, color 0.3s ease;
+  gap: 0.5rem;
+}
+
+.keycap {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  transform-style: preserve-3d;
+  transform: rotateX(-15deg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 10px 0 #070e1b, 1px 11px 0 #070e1b, 2px 12px 0 #070e1b, 3px 13px 0 #070e1b, 4px 14px 10px rgba(0,0,0,0.6);
+}
+
+.keycap:hover {
+  transform: translateY(5px) rotateX(-15deg);
+  box-shadow: 0 5px 0 #070e1b, 1px 6px 0 #070e1b, 2px 7px 0 #070e1b, 3px 8px 5px rgba(0,0,0,0.6);
+}
+
+.keycap-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+}
+
+.keycap-front {
+  background-color: var(--secondary-color);
+  transform: translateZ(5px);
+  border: 1px solid #2a3a57;
+}
+
+.keycap-front::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #22324f;
+  border-radius: 12px;
+  transform: translateY(-100%) rotateX(90deg);
+  transform-origin: bottom;
+  border: 1px solid #2a3a57;
+}
+
+.keycap-icon {
+  font-size: 3rem;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.4));
+}
+
+.keycap-label {
   color: var(--text-secondary);
-}
-.skill-item:hover {
-  transform: translateY(-5px);
-  color: var(--accent-color);
-}
-.skill-item svg {
-  width: 48px;
-  height: 48px;
-}
-.skill-item span {
-  color: var(--text-primary);
   font-weight: 500;
+  font-size: 0.9rem;
 }
 
 /* === EDUCATION SECTION === */
