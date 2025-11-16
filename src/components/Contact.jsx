@@ -12,7 +12,7 @@ function Contact() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="number">05. What's Next?</h2>
+        <h2 className="number">06. What's Next?</h2>
         <h3 className="title">Get In Touch</h3>
         <p className="description">
           I'm currently open to new opportunities and my inbox is always open.
