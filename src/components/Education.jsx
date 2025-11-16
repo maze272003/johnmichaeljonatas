@@ -8,7 +8,7 @@ const educationData = [
   {
     school: 'Phinma Araullo University',
     degree: 'Bachelor Of Science in Information Technology',
-    years: '2022 - 2026 | Undergrad',
+    years: '2022 - 2026 | Student',
     logo: auLogo,
   },
   {

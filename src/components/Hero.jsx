@@ -32,7 +32,7 @@ function Hero() {
           I build things for the web.
         </motion.h2>
         <motion.p variants={itemVariants} className="description">
-          I am a Full-Tank Developer and 3rd-year student at Phinma AU passionate about enhancing my coding skills.
+          I am a Full-Tank Developer and 4rd-year student at Phinma AU passionate about enhancing my coding skills.
         </motion.p>
         <motion.div variants={itemVariants}>
           <a href="#about" className="cta-button">
