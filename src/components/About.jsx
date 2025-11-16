@@ -34,12 +34,12 @@ function About() {
         </motion.div>
 
         <motion.div variants={fromRight} className="about-text">
-          <h3>I'm JM, a <span style={{ color: 'var(--accent-color)' }}>Full Tank Developer</span></h3>
+          <h3>I'm JM, a <span style={{ color: 'var(--accent-color)' }}>BackEnd Developer</span></h3>
           <p>
-            I am a Full-Tank Developer student at Phinma AU, currently in my third year pursuing a degree in System Development. I am passionate about enhancing my coding skills and developing applications and websites. 
+            I am a BackEnd Developer student at Phinma AU, currently in my 4th year pursuing a degree in System Development. I am passionate about enhancing my coding skills and developing applications and websites. 
           </p>
           <p>
-            Welcome to my portfolio! I am dedicated to improving my skills and love building innovative projects in the Full-Tank development ecosystem.
+            Welcome to my portfolio! I am dedicated to improving my skills and love building innovative projects in the BackEnd development ecosystem.
           </p>
           {/* <a href="#" className="cta-button" style={{ marginTop: '1rem' }}>View Resume</a> */}
         </motion.div>
