@@ -23,7 +23,7 @@ function Hero() {
         animate="visible"
       >
         <motion.p variants={itemVariants} className="intro">
-          Hi Darling, my name is
+          Hi There , My name is
         </motion.p>
         <motion.h1 variants={itemVariants} className="name">
           John Michael Jonatas.
@@ -32,7 +32,7 @@ function Hero() {
           I build things for the web.
         </motion.h2>
         <motion.p variants={itemVariants} className="description">
-          I am a Full-Tank Developer and 4rd-year student at Phinma AU passionate about enhancing my coding skills.
+          I am a Full-Stack Developer and 4rd-year student at Phinma AU passionate about enhancing my coding skills.
         </motion.p>
         <motion.div variants={itemVariants}>
           <a href="#about" className="cta-button">
