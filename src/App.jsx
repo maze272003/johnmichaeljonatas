@@ -39,7 +39,7 @@ function App() {
           
           // --- THIS IS THE CORRECTED PART ---
           // This function now runs cleanly whenever the tour is closed for any reason
-          // (either by clicking "X" or the "Done" button).
+          
           onDestroyed: () => {
             localStorage.setItem('portfolioTourCompleted', 'true');
           },
