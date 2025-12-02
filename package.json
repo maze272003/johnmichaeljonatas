@@ -11,6 +11,7 @@
     "start": "serve -s dist"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "driver.js": "^1.3.6",
     "framer-motion": "^12.23.24",
     "gsap": "^3.13.0",

@@ -6,8 +6,8 @@
   --primary-color: #0a192f;      /* Dark Navy */
   --secondary-color: #112240;    /* Lighter Navy */
   --accent-color: #64ffda;       /* Bright Mint */
-  --text-primary: #ccd6f6; /* Light Slate */
-  --text-secondary: #8892b0;/* Slate */
+  --text-primary: #ccd6f6;       /* Light Slate */
+  --text-secondary: #8892b0;     /* Slate */
   --header-height: 80px;
 
   /* Variables for Driver.js Tour */
@@ -18,7 +18,7 @@
   --driver-popover-arrow-color: var(--secondary-color);
   --driver-button-text-color: var(--primary-color);
   --driver-button-bg: var(--accent-color);
-  --driver-button-hover-bg: #a8ffeb; /* Lighter accent color */
+  --driver-button-hover-bg: #a8ffeb;
   --driver-button-secondary-text-color: var(--accent-color);
   --driver-button-secondary-bg: transparent;
   --driver-button-secondary-hover-bg: rgba(100, 255, 218, 0.1);
@@ -158,7 +158,6 @@ a {
   z-index: 20;
 }
 
-
 /* === MOBILE SIDEBAR NAVIGATION === */
 .sidebar {
   position: fixed;
@@ -209,7 +208,6 @@ a {
     border-radius: 4px;
 }
 
-
 /* === HERO SECTION === */
 .hero {
   text-align: left;
@@ -237,7 +235,7 @@ a {
   font-size: 1.1rem;
   line-height: 1.6;
 }
-.hero .cta-button, .contact .cta-button, .about-text .cta-button {
+.hero .cta-button {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -252,7 +250,7 @@ a {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.hero .cta-button:hover, .contact .cta-button:hover, .about-text .cta-button:hover {
+.hero .cta-button:hover {
   background-color: rgba(100, 255, 218, 0.1);
 }
 
@@ -502,7 +500,7 @@ a {
 /* === PROJECTS SECTION (Card Swap) === */
 .projects-section-container {
   display: flex;
-  flex-direction: column; /* Stack vertically on mobile */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 3rem;
@@ -530,7 +528,7 @@ a {
 .projects-card-swap-wrapper {
   position: relative;
   width: 100%;
-  height: 520px; /* Ensure enough height for the cards */
+  height: 520px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -541,7 +539,7 @@ a {
 @media (min-width: 992px) {
   .projects-section-container {
     display: grid;
-    grid-template-columns: 0.8fr 1.2fr; /* Text on Left, Cards on Right */
+    grid-template-columns: 0.8fr 1.2fr;
     align-items: center;
     gap: 4rem;
   }
@@ -554,25 +552,22 @@ a {
   
   .projects-card-swap-wrapper {
     margin-top: 0;
-    height: 600px; /* Slightly taller for desktop view */
+    height: 600px;
   }
 }
 
 /* --- INDIVIDUAL CARD STYLING --- */
 .project-card {
-  /* Note: Width/Height are controlled by React props, 
-     but this ensures the internal layout fills that space */
   background-color: var(--secondary-color);
   border-radius: 12px;
-  overflow: hidden; /* Keeps image corners rounded */
+  overflow: hidden;
   box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
   display: flex;
   flex-direction: column;
   height: 100%;
-  border: 1px solid rgba(100, 255, 218, 0.05); /* Subtle border for definition */
+  border: 1px solid rgba(100, 255, 218, 0.05);
 }
 
-/* Image Section - Takes top 55% of card */
 .project-card .project-image-container {
   position: relative;
   width: 100%;
@@ -593,7 +588,6 @@ a {
   transform: scale(1.05);
 }
 
-/* Status Badges (Working/Expired) */
 .project-card .project-status-badge {
   position: absolute;
   top: 15px;
@@ -613,19 +607,17 @@ a {
 .project-card .status-blue { background-color: #3b82f6; }
 .project-card .status-gray { background-color: #8892b0; }
 
-/* Content Section - Takes remaining space */
 .project-card .project-content {
   padding: 1.5rem;
-  flex: 1; /* Fills the rest of the height */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Pushes Tech stack to the very bottom */
+  justify-content: space-between;
 }
 
-/* Header: Title + Icons */
 .project-card .project-card-header {
   display: flex;
-  justify-content: space-between; /* Spreads Title and Icons apart */
+  justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 0.75rem;
 }
@@ -648,13 +640,11 @@ a {
   color: var(--accent-color);
 }
 
-/* --- LINKS (Globe & Android) --- */
-/* This is the key fix for spacing */
 .project-card .project-card-links {
   display: flex;
   align-items: center;
-  gap: 15px; /* Adds perfect space between icons */
-  margin-left: 12px; /* Ensures title doesn't hit icons */
+  gap: 15px;
+  margin-left: 12px;
   padding-top: 2px;
 }
 
@@ -671,7 +661,6 @@ a {
   transform: translateY(-2px);
 }
 
-/* Description Text */
 .project-card .project-card-description {
   font-size: 0.95rem;
   color: var(--text-secondary);
@@ -679,31 +668,176 @@ a {
   line-height: 1.5;
 }
 
-/* Tech Stack Pills at Bottom */
 .project-card .project-card-tech {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px; /* Clean gap between tech words */
+  gap: 8px;
   font-family: 'Fira Code', monospace;
   font-size: 0.75rem;
   color: var(--accent-color);
-  margin-top: auto; /* Anchors to bottom */
+  margin-top: auto;
 }
+
 /* === CONTACT SECTION === */
-.contact {
-  text-align: center;
-  max-width: 600px;
+.contact-section {
+    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
 }
-.contact .number {
-  color: var(--accent-color);
-  font-family: 'Fira Code', monospace;
+
+.contact-container {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
 }
-.contact .title {
-  font-size: clamp(40px, 5vw, 60px);
+
+.contact-header .number {
+    color: var(--accent-color);
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 20px;
 }
-.contact .description {
-  margin: 1rem 0 2rem;
+
+.contact-header .title {
+    font-size: clamp(40px, 5vw, 60px);
+    margin-bottom: 10px;
+    color: var(--text-primary);
 }
+
+.contact-header .description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 50px;
+}
+
+/* Form Styles */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    display: flex;
+    gap: 15px;
+}
+
+.form-input, .form-textarea {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--secondary-color);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background-color: rgba(17, 34, 64, 0.8);
+}
+
+.form-input::placeholder, .form-textarea::placeholder {
+    color: rgba(136, 146, 176, 0.5);
+}
+
+/* Footer & Button Styling */
+.form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Button with Specific Selector for Contact Section */
+.contact-section .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 1rem 1.75rem;
+    background-color: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-top: 0;
+}
+
+.contact-section .cta-button:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.contact-section .cta-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    border-color: var(--text-secondary);
+    color: var(--text-secondary);
+    transform: none;
+    box-shadow: none;
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Right Side Email/Status */
+.footer-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.email-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.email-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    margin-left: 5px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+}
+
+.email-link:hover {
+    text-decoration: underline;
+}
+
+.status-msg {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-family: 'Fira Code', monospace;
+}
+.status-msg.success { color: var(--accent-color); }
+.status-msg.error { color: #ef4444; }
+
 
 /* === FOOTER & SIDEBARS === */
 .footer {
@@ -892,6 +1026,21 @@ a {
   .modal-close-btn {
     top: 5px;
     right: 5px;
+  }
+  /* Contact Mobile Fixes */
+  .form-group {
+    flex-direction: column;
+  }
+  .form-footer {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 20px;
+  }
+  .footer-right {
+    justify-content: center;
+  }
+  .contact-section .cta-button {
+    width: 100%;
   }
 }
 
