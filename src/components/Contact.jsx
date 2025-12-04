@@ -18,7 +18,7 @@ function Contact() {
 
     // I-paste mo dito ang iyong EmailJS keys
     const SERVICE_ID = 'service_zws3vqp';
-    const TEMPLATE_ID = 'service_zws3vqp';
+    const TEMPLATE_ID = 'template_t60p9ap';
     const PUBLIC_KEY = 'WLPxc3Te83ApJHsOr';
 
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
