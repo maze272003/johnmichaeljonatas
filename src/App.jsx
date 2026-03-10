@@ -12,6 +12,7 @@ import Skills from './components/Skills';
 import Education from './components/Education';
 import Certificates from './components/Certificates';
 import Projects from './components/Projects';
+import Games from './components/Games';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -82,6 +83,7 @@ function App() {
             <Education />
             <Certificates />
             <Projects />
+            <Games />
             <Testimonials />
             <Contact />
           </main>
