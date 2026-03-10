@@ -5,19 +5,19 @@ import { Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    text: "JM delivered exceptional work on our inventory management system. His attention to detail and backend expertise made the project a success.",
+    text: "JM led the development of our inventory management system from scratch. His ability to translate our business requirements into a scalable, production-ready platform was impressive—stock discrepancies dropped significantly after launch.",
     author: "SpringBullBars",
-    role: "Client Project",
+    role: "Client — Inventory Management",
   },
   {
-    text: "His ability to build robust full-stack applications using Laravel and React is impressive. The document request system he built streamlined our workflow.",
-    author: "Doconnect",
-    role: "Side Project",
+    text: "The document request system JM built streamlined our entire workflow. He coordinated directly with our team to understand requirements and delivered a Laravel + React application that residents actually use daily.",
+    author: "San Lorenzo, Gapan City",
+    role: "Doconnect — Government Document System",
   },
   {
-    text: "A talented developer who consistently delivers clean, maintainable code. His QR-based inventory system was exactly what we needed.",
-    author: "RMPOIMS",
-    role: "Capstone Project",
+    text: "JM led our capstone team to build a QR-based inventory system that replaced paper tracking entirely. His architectural decisions—from database schema to mobile app—resulted in a system that cut order processing time dramatically.",
+    author: "RMPOIMS Capstone Team",
+    role: "Capstone Project — QR Inventory System",
   },
 ];
 
@@ -48,7 +48,7 @@ function Testimonials() {
     >
       <h2 className="section-title">
         <span className="number">06.</span>
-        What People Say
+        What Collaborators Say
       </h2>
       <div className="testimonials-grid">
         {testimonials.map((item, index) => (

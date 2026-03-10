@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import { Send, Loader2, CheckCircle, AlertCircle } from 'lucide-react';
+import { Send, Loader2, CheckCircle, AlertCircle, Github, Linkedin } from 'lucide-react';
 
 function Contact() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
@@ -16,7 +16,6 @@ function Contact() {
     setIsLoading(true);
     setStatus(null);
 
-    // I-paste mo dito ang iyong EmailJS keys
     const SERVICE_ID = 'service_zws3vqp';
     const TEMPLATE_ID = 'template_t60p9ap';
     const PUBLIC_KEY = 'WLPxc3Te83ApJHsOr';
@@ -43,23 +42,38 @@ function Contact() {
         transition={{ duration: 0.8 }}
       >
         <div className="contact-header">
-            <h2 className="number">07. What's Next?</h2>
-            <h3 className="title">Get In Touch</h3>
+            <h2 className="number">07. What&apos;s Next?</h2>
+            <h3 className="title">Let&apos;s Work Together</h3>
             <p className="description">
-            I'm currently open to new opportunities and my inbox is always open.
-            Fill out the form below or send an email directly!
+            I&apos;m open to new opportunities where I can contribute to meaningful 
+            projects and grow alongside a strong team. Whether you have a question, 
+            a project idea, or just want to connect—I&apos;d love to hear from you.
             </p>
+        </div>
+
+        {/* Contact Links */}
+        <div className="contact-links">
+          <a href="https://github.com/maze272003" target="_blank" rel="noopener noreferrer" className="contact-link-item" aria-label="GitHub Profile">
+            <Github size={20} />
+            <span>GitHub</span>
+          </a>
+          <a href="https://www.linkedin.com/in/john-michael-jonatas-683405390" target="_blank" rel="noopener noreferrer" className="contact-link-item" aria-label="LinkedIn Profile">
+            <Linkedin size={20} />
+            <span>LinkedIn</span>
+          </a>
         </div>
 
         <form ref={formRef} onSubmit={sendEmail} className="contact-form">
             <div className="form-group">
-                <input type="text" name="user_name" placeholder="Name" required className="form-input" />
-                <input type="email" name="user_email" placeholder="Email" required className="form-input" />
+                <label htmlFor="contact-name" className="sr-only">Name</label>
+                <input id="contact-name" type="text" name="user_name" placeholder="Name" required className="form-input" />
+                <label htmlFor="contact-email" className="sr-only">Email</label>
+                <input id="contact-email" type="email" name="user_email" placeholder="Email" required className="form-input" />
             </div>
-            <textarea name="message" placeholder="Message" rows="5" required className="form-textarea"></textarea>
+            <label htmlFor="contact-message" className="sr-only">Message</label>
+            <textarea id="contact-message" name="message" placeholder="Message" rows="5" required className="form-textarea"></textarea>
 
             <div className="form-footer">
-                {/* Left Side: Button */}
                 <button type="submit" className="cta-button submit-btn" disabled={isLoading}>
                     {isLoading ? (
                         <> <Loader2 className="animate-spin" size={18} /> Sending... </>
@@ -68,7 +82,6 @@ function Contact() {
                     )}
                 </button>
 
-                {/* Right Side: Email OR Status Message */}
                 <div className="footer-right">
                     {status === 'success' && (
                         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="status-msg success">
@@ -82,7 +95,6 @@ function Contact() {
                         </motion.div>
                     )}
 
-                    {/* Ipakita lang ang email kung walang status message (o pwede rin pagsamahin) */}
                     {!status && (
                         <p className="email-text">
                             Or email me at: <a href="mailto:jmjonatas4@gmail.com" className="email-link">jmjonatas4@gmail.com</a>

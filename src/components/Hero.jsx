@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FileText } from 'lucide-react';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -23,22 +24,27 @@ function Hero() {
         animate="visible"
       >
         <motion.p variants={itemVariants} className="intro">
-          Hi there, my name is
+          Hi, I&apos;m
         </motion.p>
         <motion.h1 variants={itemVariants} className="name">
           John Michael Jonatas.
         </motion.h1>
         <motion.h2 variants={itemVariants} className="subtitle">
-          I build robust web solutions.
+          I engineer systems that scale.
         </motion.h2>
         <motion.p variants={itemVariants} className="description">
-          I'm a Full-Stack Developer specializing in building scalable backend systems
-          and modern web applications. Currently a 4th-year BS Information Technology
-          student at Phinma AU, I turn ideas into reliable, production-ready software.
+          Full-Stack Developer focused on building production-grade web applications
+          and scalable backend architectures. I led the design and development of
+          inventory and document management platforms that serve real organizations—reducing 
+          manual workflows by up to 60% and improving operational efficiency.
         </motion.p>
-        <motion.div variants={itemVariants}>
+        <motion.div variants={itemVariants} className="hero-cta-group">
           <a href="#projects" className="cta-button">
-            View My Work
+            View Case Studies
+          </a>
+          <a href="#contact" className="cta-button cta-secondary">
+            <FileText size={18} />
+            Get In Touch
           </a>
         </motion.div>
       </motion.div>

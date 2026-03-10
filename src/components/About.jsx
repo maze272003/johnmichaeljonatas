@@ -34,14 +34,21 @@ function About() {
         </motion.div>
 
         <motion.div variants={fromRight} className="about-text">
-          <h3>I'm JM, a <span style={{ color: 'var(--accent-color)' }}>BackEnd Developer</span></h3>
+          <h3>I&apos;m JM, a <span style={{ color: 'var(--accent-color)' }}>Full-Stack Developer</span></h3>
           <p>
-            I am a BackEnd Developer student at Phinma AU, currently in my 4th year pursuing a degree in System Development. I am passionate about enhancing my coding skills and developing applications and websites. 
+            I specialize in end-to-end web application development—from database 
+            architecture to user-facing interfaces. I led the design, development, 
+            and deployment of production systems including a QR-based inventory 
+            management platform and a government document request system, both 
+            serving real organizations in the Philippines.
           </p>
           <p>
-            Welcome to my portfolio! I am dedicated to improving my skills and love building innovative projects in the BackEnd development ecosystem.
+            My approach emphasizes systems-level thinking: building scalable 
+            architectures, designing reusable component patterns, and making 
+            strategic technical decisions that balance speed with long-term 
+            maintainability. I&apos;m driven by the impact of well-crafted software 
+            on operational efficiency and user experience.
           </p>
-          {/* <a href="#" className="cta-button" style={{ marginTop: '1rem' }}>View Resume</a> */}
         </motion.div>
       </div>
     </motion.section>
