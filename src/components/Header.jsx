@@ -31,7 +31,7 @@ function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
 
-      const sections = ['about', 'skills', 'education', 'certificates', 'projects', 'testimonials', 'contact'];
+      const sections = ['about', 'skills', 'education', 'certificates', 'projects', 'games', 'testimonials', 'contact'];
       const scrollPos = window.scrollY + 150;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -54,6 +54,7 @@ function Header() {
     { name: 'Education', href: '#education' },
     { name: 'Certificates', href: '#certificates' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Games', href: '#games' },
     { name: 'Testimonials', href: '#testimonials' },
     { name: 'Contact', href: '#contact' },
   ];

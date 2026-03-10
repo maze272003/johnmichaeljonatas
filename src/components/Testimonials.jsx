@@ -47,7 +47,7 @@ function Testimonials() {
       variants={containerVariants}
     >
       <h2 className="section-title">
-        <span className="number">06.</span>
+        <span className="number">07.</span>
         What Collaborators Say
       </h2>
       <div className="testimonials-grid">

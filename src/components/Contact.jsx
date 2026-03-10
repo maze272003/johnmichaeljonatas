@@ -42,7 +42,7 @@ function Contact() {
         transition={{ duration: 0.8 }}
       >
         <div className="contact-header">
-            <h2 className="number">07. What&apos;s Next?</h2>
+            <h2 className="number">08. What&apos;s Next?</h2>
             <h3 className="title">Let&apos;s Work Together</h3>
             <p className="description">
             I&apos;m open to new opportunities where I can contribute to meaningful 
