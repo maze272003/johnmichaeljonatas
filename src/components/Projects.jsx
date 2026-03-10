@@ -201,8 +201,8 @@ function Projects() {
                     </div>
                   </header>
                   
-                  <p className="project-card-description">{project.challenge}</p>
-                  <p className="project-card-impact">{project.impact}</p>
+                  <p className="project-card-description" aria-label="Challenge">{project.challenge}</p>
+                  <p className="project-card-impact" aria-label="Impact">{project.impact}</p>
                 </div>
 
                 <footer className="project-card-tech">
