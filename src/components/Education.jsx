@@ -46,7 +46,7 @@ function Education() {
       >
         {educationData.map(edu => (
           <motion.div key={edu.school} variants={itemVariants} className="education-box">
-            <img src={edu.logo} alt={`${edu.school} logo`} className="education-logo" />
+            <img src={edu.logo} alt={`${edu.school} logo`} className="education-logo" loading="lazy" />
             <div className="education-content">
               <h3>{edu.school}</h3>
               <p>{edu.degree}</p>

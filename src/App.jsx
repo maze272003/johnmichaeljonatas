@@ -12,8 +12,11 @@ import Skills from './components/Skills';
 import Education from './components/Education';
 import Certificates from './components/Certificates';
 import Projects from './components/Projects';
+import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import BackToTop from './components/BackToTop';
+import CustomCursor from './components/CustomCursor';
 import Preloader from './components/Preloader';
 import './App.css';
 
@@ -70,6 +73,7 @@ function App() {
         <Preloader />
       ) : (
         <>
+          <CustomCursor />
           <Header />
           <main>
             <Hero />
@@ -78,9 +82,11 @@ function App() {
             <Education />
             <Certificates />
             <Projects />
+            <Testimonials />
             <Contact />
           </main>
           <Footer />
+          <BackToTop />
         </>
       )}
     </>
