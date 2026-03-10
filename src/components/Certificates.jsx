@@ -132,7 +132,7 @@ function Certificates() {
                 onDoubleClick={() => handleDoubleClick(cert.imageUrl)}
                 onTouchEnd={() => handleTouchEnd(cert.imageUrl)}
               >
-                <img src={cert.imageUrl} alt={cert.title} className="certificate-image" />
+                <img src={cert.imageUrl} alt={cert.title} className="certificate-image" loading="lazy" />
                 <div className="certificate-info">
                   <h3>{cert.title}</h3>
                   <p>{cert.issuer}</p>

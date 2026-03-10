@@ -23,20 +23,22 @@ function Hero() {
         animate="visible"
       >
         <motion.p variants={itemVariants} className="intro">
-          Hi There , My name is
+          Hi there, my name is
         </motion.p>
         <motion.h1 variants={itemVariants} className="name">
           John Michael Jonatas.
         </motion.h1>
         <motion.h2 variants={itemVariants} className="subtitle">
-          I build things for the web.
+          I build robust web solutions.
         </motion.h2>
         <motion.p variants={itemVariants} className="description">
-          I am a Full-Stack Developer and 4rd-year student at Phinma AU passionate about enhancing my coding skills.
+          I'm a Full-Stack Developer specializing in building scalable backend systems
+          and modern web applications. Currently a 4th-year BS Information Technology
+          student at Phinma AU, I turn ideas into reliable, production-ready software.
         </motion.p>
         <motion.div variants={itemVariants}>
-          <a href="#about" className="cta-button">
-            About Me
+          <a href="#projects" className="cta-button">
+            View My Work
           </a>
         </motion.div>
       </motion.div>

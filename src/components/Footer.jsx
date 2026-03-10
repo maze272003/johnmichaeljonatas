@@ -13,7 +13,7 @@ function Footer() {
         <a href="mailto:jmjonatas4@gmail.com">jmjonatas4@gmail.com</a>
       </div>
       
-      <footer className="footer">
+      <footer className="footer" role="contentinfo">
         <p> <i className="fas fa-phone"></i> +63 9615962830</p>
         <p> <i className="fas fa-envelope"></i> jmjonatas4@gmail.com</p>
         <p> <i className="fas fa-map-marked-alt"></i> Nueva Ecija, Palayan City</p>

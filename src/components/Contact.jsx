@@ -43,7 +43,7 @@ function Contact() {
         transition={{ duration: 0.8 }}
       >
         <div className="contact-header">
-            <h2 className="number">06. What's Next?</h2>
+            <h2 className="number">07. What's Next?</h2>
             <h3 className="title">Get In Touch</h3>
             <p className="description">
             I'm currently open to new opportunities and my inbox is always open.
