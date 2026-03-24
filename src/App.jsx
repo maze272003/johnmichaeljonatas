@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Lenis from 'lenis';
 
 // Import Driver.js
 import { driver } from "driver.js";
@@ -36,6 +37,31 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return undefined;
+
+    const lenis = new Lenis({
+      duration: 1.1,
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.2,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
+    });
+
+    let animationFrameId;
+    const raf = (time) => {
+      lenis.raf(time);
+      animationFrameId = window.requestAnimationFrame(raf);
+    };
+    animationFrameId = window.requestAnimationFrame(raf);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrameId);
+      lenis.destroy();
+    };
+  }, []);
+
+  useEffect(() => {
     const updateScrollHue = () => {
       const maxScroll = Math.max(document.body.scrollHeight - window.innerHeight, 1);
       const progress = Math.min(window.scrollY / maxScroll, 1);
@@ -53,19 +79,28 @@ function App() {
       'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'
     ];
     const pressed = [];
+    let resetTimerId;
 
     const handleKeyDown = (event) => {
       pressed.push(event.key);
       if (pressed.length > konamiCode.length) pressed.shift();
+      window.clearTimeout(resetTimerId);
+      resetTimerId = window.setTimeout(() => {
+        pressed.length = 0;
+      }, 3500);
 
       if (pressed.join('|').toLowerCase() === konamiCode.join('|').toLowerCase()) {
         document.body.classList.add('konami-activated');
+        pressed.length = 0;
         window.setTimeout(() => document.body.classList.remove('konami-activated'), 8000);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      window.clearTimeout(resetTimerId);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   // New useEffect for the tour logic

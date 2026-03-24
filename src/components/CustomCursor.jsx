@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+const MAX_TRAIL_POINTS = 40;
+
 function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -88,7 +90,7 @@ function CustomCursor() {
 
     const pushPoint = (event) => {
       pointsRef.current.push({ x: event.clientX, y: event.clientY, life: 1 });
-      if (pointsRef.current.length > 40) pointsRef.current.shift();
+      if (pointsRef.current.length > MAX_TRAIL_POINTS) pointsRef.current.shift();
     };
 
     resize();

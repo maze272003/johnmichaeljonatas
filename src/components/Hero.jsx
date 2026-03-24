@@ -80,7 +80,7 @@ ansible-playbook deploy.yml`,
             <img src={profileImage} alt="John Michael Jonatas holographic portrait" className="hero-avatar-image" />
           </div>
           {orbitSnippets.map((snippet) => (
-            <pre key={snippet.className} className={snippet.className} aria-hidden="true">
+            <pre key={snippet.className} className={snippet.className} aria-label="Floating code snippet">
               <code>{snippet.code}</code>
             </pre>
           ))}

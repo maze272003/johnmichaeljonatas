@@ -26,6 +26,12 @@ const skillsData = [
   { name: 'Expo', icon: <SiExpo />, color: '#000020', level: 73 },
 ];
 
+const decorativeConnections = [
+  'M180 180 C320 100, 420 220, 560 170',
+  'M560 170 C700 130, 760 250, 900 210',
+  'M220 430 C380 360, 500 460, 680 400',
+];
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
@@ -58,9 +64,9 @@ function Skills() {
         animate={inView ? 'visible' : 'hidden'}
       >
         <svg className="skills-connections" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M180 180 C320 100, 420 220, 560 170" />
-          <path d="M560 170 C700 130, 760 250, 900 210" />
-          <path d="M220 430 C380 360, 500 460, 680 400" />
+          {decorativeConnections.map((path) => (
+            <path key={path} d={path} />
+          ))}
         </svg>
         {skillsData.map((skill) => (
           <motion.div key={skill.name} variants={itemVariants} className="keycap-wrapper hex-node">
