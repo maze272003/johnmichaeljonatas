@@ -124,6 +124,13 @@ const projectData = [
 
 function Projects() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const [activeFilter, setActiveFilter] = React.useState('all');
+  const filters = ['all', 'live', 'archived'];
+
+  const filteredProjects = projectData.filter((project) => {
+    if (activeFilter === 'all') return true;
+    return project.status.toLowerCase() === activeFilter;
+  });
 
   return (
     <section id="projects" className="projects-section-container" ref={ref}>
@@ -135,12 +142,24 @@ function Projects() {
       >
         <h2 className="section-title">
           <span className="number">05.</span>
-          Case Studies
+          Holographic Showcase
         </h2>
         <p className="projects-description">
           Selected projects where I led development from problem definition through 
           production deployment. Hover to explore each case study.
         </p>
+        <div className="project-filters" role="group" aria-label="Project filters">
+          {filters.map((filter) => (
+            <button
+              key={filter}
+              type="button"
+              className={`filter-btn ${activeFilter === filter ? 'active' : ''}`}
+              onClick={() => setActiveFilter(filter)}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
       </motion.div>
 
       <div className="projects-card-swap-wrapper">
@@ -151,10 +170,10 @@ function Projects() {
           verticalDistance={50}
           delay={4000}
           pauseOnHover={true}
-          skewAmount={0}
+          skewAmount={3}
           easing="back.out(1.2)"
         >
-          {projectData.map(project => (
+          {filteredProjects.map(project => (
             <Card key={project.id} customClass="project-card">
               {/* Image Section */}
               <div className="project-image-container">

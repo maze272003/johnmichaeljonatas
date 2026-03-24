@@ -1,31 +1,18 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import logo from '../assets/jmfire.png';
 
 function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const saved = localStorage.getItem('portfolioTheme');
-    return saved ? saved === 'dark' : true;
-  });
 
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
-  const toggleTheme = useCallback(() => {
-    setIsDarkMode((prev) => {
-      const newMode = !prev;
-      localStorage.setItem('portfolioTheme', newMode ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', newMode ? 'dark' : 'light');
-      return newMode;
-    });
-  }, []);
-
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-  }, [isDarkMode]);
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,29 +66,11 @@ function Header() {
               </a>
             </li>
           ))}
-          <li>
-            <button
-              className="theme-toggle"
-              onClick={toggleTheme}
-              aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-              title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-            >
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-          </li>
         </ul>
       </nav>
 
       {/* Mobile Menu Button */}
       <div className="mobile-controls">
-        <button
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-          title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-        >
-          {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
         <button className="mobile-menu-btn" onClick={toggleSidebar} aria-label="Toggle mobile menu">
           {isSidebarOpen ? <X size={32} /> : <Menu size={32} />}
         </button>
