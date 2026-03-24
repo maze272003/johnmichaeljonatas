@@ -47,7 +47,8 @@ function About() {
             architectures, designing reusable component patterns, and making 
             strategic technical decisions that balance speed with long-term 
             maintainability. I&apos;m driven by the impact of well-crafted software 
-            on operational efficiency and user experience.
+            on operational efficiency and user experience, with deployment
+            experience across Ubuntu, Dokploy, Coolify, and Railway platforms.
           </p>
         </motion.div>
       </div>
