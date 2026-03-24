@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const trailRef = useRef(null);
+  const pointsRef = useRef([]);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -53,18 +55,69 @@ function CustomCursor() {
     };
   }, [isMobile, isVisible]);
 
+  useEffect(() => {
+    if (isMobile) return undefined;
+
+    const canvas = trailRef.current;
+    const context = canvas?.getContext('2d');
+    if (!canvas || !context) return undefined;
+
+    let animationFrameId;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    const draw = () => {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+
+      pointsRef.current = pointsRef.current
+        .map((point) => ({ ...point, life: point.life - 0.02 }))
+        .filter((point) => point.life > 0);
+
+      pointsRef.current.forEach((point) => {
+        context.beginPath();
+        context.arc(point.x, point.y, 8 * point.life, 0, Math.PI * 2);
+        context.fillStyle = `rgba(0, 243, 255, ${0.45 * point.life})`;
+        context.fill();
+      });
+
+      animationFrameId = window.requestAnimationFrame(draw);
+    };
+
+    const pushPoint = (event) => {
+      pointsRef.current.push({ x: event.clientX, y: event.clientY, life: 1 });
+      if (pointsRef.current.length > 40) pointsRef.current.shift();
+    };
+
+    resize();
+    draw();
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', pushPoint);
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      window.removeEventListener('mousemove', pushPoint);
+      window.cancelAnimationFrame(animationFrameId);
+    };
+  }, [isMobile]);
+
   if (isMobile) return null;
 
   return (
-    <div
-      className={`custom-cursor ${isHovering ? 'hovering' : ''}`}
-      style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-        opacity: isVisible ? 1 : 0,
-      }}
-      aria-hidden="true"
-    />
+    <>
+      <canvas ref={trailRef} className="cursor-trail-canvas" aria-hidden="true" />
+      <div
+        className={`custom-cursor ${isHovering ? 'hovering' : ''}`}
+        style={{
+          left: `${position.x}px`,
+          top: `${position.y}px`,
+          opacity: isVisible ? 1 : 0,
+        }}
+        aria-hidden="true"
+      />
+    </>
   );
 }
 

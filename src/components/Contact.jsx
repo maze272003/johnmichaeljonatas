@@ -21,7 +21,7 @@ function Contact() {
     const PUBLIC_KEY = 'WLPxc3Te83ApJHsOr';
 
     emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
-      .then((result) => {
+      .then(() => {
           setIsLoading(false);
           setStatus('success');
           e.target.reset();
@@ -42,12 +42,11 @@ function Contact() {
         transition={{ duration: 0.8 }}
       >
         <div className="contact-header">
-            <h2 className="number">08. What&apos;s Next?</h2>
-            <h3 className="title">Let&apos;s Work Together</h3>
+            <h2 className="number">08. Secure Communication Channel</h2>
+            <h3 className="title">Initialize Transmission</h3>
             <p className="description">
-            I&apos;m open to new opportunities where I can contribute to meaningful 
-            projects and grow alongside a strong team. Whether you have a question, 
-            a project idea, or just want to connect—I&apos;d love to hear from you.
+            Encrypted line is open for collaboration, architecture reviews, and product engineering work.
+            Send your mission details and I&apos;ll respond with a secure development plan.
             </p>
         </div>
 
@@ -66,19 +65,19 @@ function Contact() {
         <form ref={formRef} onSubmit={sendEmail} className="contact-form">
             <div className="form-group">
                 <label htmlFor="contact-name" className="sr-only">Name</label>
-                <input id="contact-name" type="text" name="user_name" placeholder="Name" required className="form-input" />
+                <input id="contact-name" type="text" name="user_name" placeholder="Agent Name" required className="form-input holographic-input" />
                 <label htmlFor="contact-email" className="sr-only">Email</label>
-                <input id="contact-email" type="email" name="user_email" placeholder="Email" required className="form-input" />
+                <input id="contact-email" type="email" name="user_email" placeholder="Secure Address" required className="form-input holographic-input" />
             </div>
             <label htmlFor="contact-message" className="sr-only">Message</label>
-            <textarea id="contact-message" name="message" placeholder="Message" rows="5" required className="form-textarea"></textarea>
+            <textarea id="contact-message" name="message" placeholder="Transmission Payload" rows="5" required className="form-textarea holographic-input"></textarea>
 
             <div className="form-footer">
                 <button type="submit" className="cta-button submit-btn" disabled={isLoading}>
                     {isLoading ? (
-                        <> <Loader2 className="animate-spin" size={18} /> Sending... </>
+                        <> <Loader2 className="animate-spin" size={18} /> Transmitting... </>
                     ) : (
-                        <> Send Message <Send size={18} /> </>
+                        <> Initialize Transmission <Send size={18} /> </>
                     )}
                 </button>
 

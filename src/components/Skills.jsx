@@ -12,18 +12,18 @@ const ConvexIcon = () => (
 );
 
 const skillsData = [
-  { name: 'Python', icon: <FaPython />, color: '#3776AB' },
-  { name: 'PHP', icon: <FaPhp />, color: '#777BB4' },
-  { name: 'Laravel', icon: <FaLaravel />, color: '#FF2D20' },
-  { name: 'Java', icon: <FaJava />, color: '#007396' },
-  { name: 'C#', icon: <SiDotnet />, color: '#512BD4' },
-  { name: 'JavaScript', icon: <FaJsSquare />, color: '#F7DF1E' },
-  { name: 'Node.js', icon: <FaNodeJs />, color: '#339933' },
-  { name: 'Convex', icon: <ConvexIcon />, color: '#EE342F' },
-  { name: 'React Native', icon: <FaReact />, color: '#61DAFB' },
-  { name: 'Android Studio', icon: <SiAndroidstudio />, color: '#3DDC84' },
-  { name: 'Unity', icon: <SiUnity />, color: '#FFFFFF' },
-  { name: 'Expo', icon: <SiExpo />, color: '#000020' },
+  { name: 'Python', icon: <FaPython />, color: '#3776AB', level: 90 },
+  { name: 'PHP', icon: <FaPhp />, color: '#777BB4', level: 88 },
+  { name: 'Laravel', icon: <FaLaravel />, color: '#FF2D20', level: 87 },
+  { name: 'Java', icon: <FaJava />, color: '#007396', level: 76 },
+  { name: 'C#', icon: <SiDotnet />, color: '#512BD4', level: 74 },
+  { name: 'JavaScript', icon: <FaJsSquare />, color: '#F7DF1E', level: 92 },
+  { name: 'Node.js', icon: <FaNodeJs />, color: '#339933', level: 84 },
+  { name: 'Convex', icon: <ConvexIcon />, color: '#EE342F', level: 70 },
+  { name: 'React Native', icon: <FaReact />, color: '#61DAFB', level: 82 },
+  { name: 'Android Studio', icon: <SiAndroidstudio />, color: '#3DDC84', level: 78 },
+  { name: 'Unity', icon: <SiUnity />, color: '#FFFFFF', level: 67 },
+  { name: 'Expo', icon: <SiExpo />, color: '#000020', level: 73 },
 ];
 
 const containerVariants = {
@@ -48,21 +48,33 @@ function Skills() {
         transition={{ duration: 0.5 }}
       >
         <span className="number">02.</span>
-        Skills & Abilities
+        Skills Matrix
       </motion.h2>
 
       <motion.div 
-        className="skills-keycap-container"
+        className="skills-keycap-container skills-honeycomb"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
       >
+        <svg className="skills-connections" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M180 180 C320 100, 420 220, 560 170" />
+          <path d="M560 170 C700 130, 760 250, 900 210" />
+          <path d="M220 430 C380 360, 500 460, 680 400" />
+        </svg>
         {skillsData.map((skill) => (
-          <motion.div key={skill.name} variants={itemVariants} className="keycap-wrapper">
-            <div className="keycap">
+          <motion.div key={skill.name} variants={itemVariants} className="keycap-wrapper hex-node">
+            <div className="keycap hex-keycap">
               <div className="keycap-face keycap-front">
                 <span className="keycap-icon" style={{ color: skill.color }}>{skill.icon}</span>
               </div>
+            </div>
+            <div
+              className="expertise-ring"
+              style={{ '--expertise-level': `${skill.level}%` }}
+              aria-label={`${skill.name} expertise ${skill.level}%`}
+            >
+              <span>{skill.level}%</span>
             </div>
             <span className="keycap-label">{skill.name}</span>
           </motion.div>

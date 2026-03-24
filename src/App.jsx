@@ -27,8 +27,45 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 500);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }, []);
+
+  useEffect(() => {
+    const updateScrollHue = () => {
+      const maxScroll = Math.max(document.body.scrollHeight - window.innerHeight, 1);
+      const progress = Math.min(window.scrollY / maxScroll, 1);
+      document.documentElement.style.setProperty('--holo-hue', `${progress * 120}deg`);
+    };
+
+    updateScrollHue();
+    window.addEventListener('scroll', updateScrollHue, { passive: true });
+    return () => window.removeEventListener('scroll', updateScrollHue);
+  }, []);
+
+  useEffect(() => {
+    const konamiCode = [
+      'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+      'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'
+    ];
+    const pressed = [];
+
+    const handleKeyDown = (event) => {
+      pressed.push(event.key);
+      if (pressed.length > konamiCode.length) pressed.shift();
+
+      if (pressed.join('|').toLowerCase() === konamiCode.join('|').toLowerCase()) {
+        document.body.classList.add('konami-activated');
+        window.setTimeout(() => document.body.classList.remove('konami-activated'), 8000);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   // New useEffect for the tour logic

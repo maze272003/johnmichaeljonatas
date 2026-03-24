@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileText } from 'lucide-react';
+import { ShieldCheck, BrainCircuit } from 'lucide-react';
+import profileImage from '../assets/jm.jpg';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -16,36 +17,73 @@ const itemVariants = {
 };
 
 function Hero() {
+  const orbitSnippets = [
+    {
+      className: 'code-orbit code-orbit-one',
+      code: `const secureApi = async () => {
+  const token = await auth.issueToken();
+  return encrypt(payload, token);
+};`,
+    },
+    {
+      className: 'code-orbit code-orbit-two',
+      code: `model.fit(trainData, {
+  optimizer: "adamw",
+  epochs: 120
+});`,
+    },
+    {
+      className: 'code-orbit code-orbit-three',
+      code: `terraform apply -var "env=prod"
+ansible-playbook deploy.yml`,
+    },
+  ];
+
   return (
     <section id="hero" className="hero">
       <motion.div
+        className="hero-grid"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <motion.p variants={itemVariants} className="intro">
-          Hi, I&apos;m
-        </motion.p>
-        <motion.h1 variants={itemVariants} className="name">
-          John Michael Jonatas.
-        </motion.h1>
-        <motion.h2 variants={itemVariants} className="subtitle">
-          I engineer systems that scale.
-        </motion.h2>
-        <motion.p variants={itemVariants} className="description">
-          Full-Stack Developer focused on building production-grade web applications
-          and scalable backend architectures. I led the design and development of
-          inventory and document management platforms that serve real organizations—reducing 
-          manual workflows by up to 60% and improving operational efficiency.
-        </motion.p>
-        <motion.div variants={itemVariants} className="hero-cta-group">
-          <a href="#projects" className="cta-button">
-            View Case Studies
-          </a>
-          <a href="#contact" className="cta-button cta-secondary">
-            <FileText size={18} />
-            Get In Touch
-          </a>
+        <div className="hero-content">
+          <motion.p variants={itemVariants} className="intro">
+            &gt; system.online
+          </motion.p>
+          <motion.h1 variants={itemVariants} className="name glitch-heading" data-text="John Michael Jonatas.">
+            John Michael Jonatas.
+          </motion.h1>
+          <motion.h2 variants={itemVariants} className="subtitle typing-subtitle">
+            Full Stack Developer | AI Architect | Cyber Security Specialist
+          </motion.h2>
+          <motion.p variants={itemVariants} className="description">
+            I build resilient full-stack systems, production-ready AI workflows, and secure cloud infrastructure
+            with a focus on performance, maintainability, and measurable business impact.
+          </motion.p>
+          <motion.div variants={itemVariants} className="hero-badges">
+            <span><BrainCircuit size={16} /> AI Systems</span>
+            <span><ShieldCheck size={16} /> Secure Architecture</span>
+          </motion.div>
+          <motion.div variants={itemVariants} className="hero-cta-group">
+            <a href="#projects" className="cta-button">
+              View Case Studies
+            </a>
+            <a href="#contact" className="cta-button cta-secondary">
+              Initialize Transmission
+            </a>
+          </motion.div>
+        </div>
+
+        <motion.div variants={itemVariants} className="hero-visual">
+          <div className="hero-avatar-holo">
+            <img src={profileImage} alt="John Michael Jonatas holographic portrait" className="hero-avatar-image" />
+          </div>
+          {orbitSnippets.map((snippet) => (
+            <pre key={snippet.className} className={snippet.className} aria-hidden="true">
+              <code>{snippet.code}</code>
+            </pre>
+          ))}
         </motion.div>
       </motion.div>
     </section>
