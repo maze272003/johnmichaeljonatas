@@ -124,12 +124,28 @@ const projectData = [
 
 function Projects() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
-  const [viewportWidth, setViewportWidth] = useState(() => window.innerWidth);
+  const [viewportWidth, setViewportWidth] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth : 1024
+  );
 
   useEffect(() => {
-    const onResize = () => setViewportWidth(window.innerWidth);
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    let resizeTimer;
+    const onResize = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        setViewportWidth(window.innerWidth);
+      }, 120);
+    };
+
     window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+      window.clearTimeout(resizeTimer);
+    };
   }, []);
 
   const cardSize = useMemo(() => {
