@@ -43,12 +43,12 @@ body {
 }
 
 main {
-  padding: 0 24px;
+  padding: 0 clamp(12px, 3vw, 24px);
 }
 
 section {
   min-height: 100vh;
-  padding: 100px 0;
+  padding: clamp(80px, 10vw, 100px) 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -273,7 +273,10 @@ a {
     display: flex;
     align-items: center;
     width: 100%;
-    white-space: nowrap;
+    flex-wrap: wrap;
+    white-space: normal;
+    row-gap: 0.4rem;
+    line-height: 1.2;
     font-size: 2rem;
     margin-bottom: 2.5rem;
 }
@@ -476,7 +479,7 @@ a {
   display: none;
 }
 .certificate-card {
-  width: 300px;
+  width: min(82vw, 300px);
   flex-shrink: 0;
   margin-right: 20px;
   background-color: var(--secondary-color);
@@ -542,7 +545,8 @@ a {
 .projects-card-swap-wrapper {
   position: relative;
   width: 100%;
-  height: 520px;
+  height: clamp(430px, 70vh, 600px);
+  min-height: 430px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -814,6 +818,7 @@ a {
   background-color: var(--secondary-color);
   border: 1px solid rgba(100, 255, 218, 0.15);
   border-radius: 12px;
+  width: min(100%, 980px);
   max-width: 90vw;
   max-height: 90vh;
   overflow-y: auto;
@@ -833,6 +838,8 @@ a {
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
 }
 
 .game-modal-close {
@@ -1321,6 +1328,13 @@ a {
 }
 
 @media (max-width: 600px) {
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+  }
+  .section-title::after {
+    display: none;
+  }
   .education-box {
     flex-direction: column;
     text-align: center;
@@ -1344,12 +1358,35 @@ a {
   .contact-section .cta-button {
     width: 100%;
   }
+  .game-modal-backdrop {
+    padding: 12px;
+  }
+  .game-modal-header {
+    padding: 0.75rem 1rem;
+  }
+  .game-modal-title {
+    font-size: 1rem;
+  }
+  .game-modal-body {
+    padding: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
     .about-image-wrapper {
         width: 200px;
         height: 200px;
+    }
+    .projects-section-container {
+      padding: 80px 12px;
+      gap: 2rem;
+    }
+    .projects-description {
+      font-size: 1rem;
+    }
+    .projects-card-swap-wrapper {
+      min-height: 410px;
+      height: 430px;
     }
 }
 
