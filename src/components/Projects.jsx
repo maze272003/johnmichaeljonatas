@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import CardSwap, { Card } from './CardSwap';
 import { Globe, Smartphone } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -124,6 +124,39 @@ const projectData = [
 
 function Projects() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const [viewportWidth, setViewportWidth] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth : 1024
+  );
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    let resizeTimer;
+    const onResize = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        setViewportWidth(window.innerWidth);
+      }, 120);
+    };
+
+    window.addEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+      window.clearTimeout(resizeTimer);
+    };
+  }, []);
+
+  const cardSize = useMemo(() => {
+    if (viewportWidth <= 480) {
+      return { width: 280, height: 420, cardDistance: 26, verticalDistance: 34 };
+    }
+    if (viewportWidth <= 768) {
+      return { width: 320, height: 450, cardDistance: 32, verticalDistance: 40 };
+    }
+    return { width: 380, height: 480, cardDistance: 40, verticalDistance: 50 };
+  }, [viewportWidth]);
 
   return (
     <section id="projects" className="projects-section-container" ref={ref}>
@@ -145,10 +178,10 @@ function Projects() {
 
       <div className="projects-card-swap-wrapper">
         <CardSwap
-          width={380}
-          height={480}
-          cardDistance={40}
-          verticalDistance={50}
+          width={cardSize.width}
+          height={cardSize.height}
+          cardDistance={cardSize.cardDistance}
+          verticalDistance={cardSize.verticalDistance}
           delay={4000}
           pauseOnHover={true}
           skewAmount={0}
