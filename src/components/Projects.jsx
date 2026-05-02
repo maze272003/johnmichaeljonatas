@@ -163,7 +163,14 @@ function Projects() {
                 <header className="project-card-header">
                   <div>
                     <h3 className="project-card-title" id={`project-title-${project.id}`}>
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">{project.title}</a>
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Visit ${project.title} project`}
+                      >
+                        {project.title}
+                      </a>
                     </h3>
                     <p className="project-card-subtitle">{project.subtitle}</p>
                   </div>
@@ -182,13 +189,13 @@ function Projects() {
 
                     {project.androidUrl && (
                       <a 
-                          href={project.androidUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="icon-link"
-                          title="Download Android App"
+                        href={project.androidUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="icon-link"
+                        title="Download Android App"
                       >
-                          <Smartphone size={18} />
+                        <Smartphone size={18} />
                       </a>
                     )}
                   </div>
