@@ -1,29 +1,32 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
-import { FaPython, FaPhp, FaLaravel, FaJava, FaJsSquare, FaNodeJs, FaReact } from 'react-icons/fa';
-import { SiAndroidstudio, SiUnity, SiExpo, SiDotnet } from 'react-icons/si';
-
-const ConvexIcon = () => (
-  <svg viewBox="0 0 24 24" width="1em" height="1em" role="img">
-    <title>Convex</title>
-    <polygon points="12,2 22,12 12,22 2,12" fill="currentColor" />
-  </svg>
-);
+import pythonIcon from '../assets/skills/python.svg';
+import phpIcon from '../assets/skills/php.svg';
+import laravelIcon from '../assets/skills/laravel.svg';
+import javaIcon from '../assets/skills/java.svg';
+import csharpIcon from '../assets/skills/csharp.svg';
+import javascriptIcon from '../assets/skills/javascript.svg';
+import nodejsIcon from '../assets/skills/nodejs.svg';
+import convexIcon from '../assets/skills/convex.svg';
+import reactIcon from '../assets/skills/react.svg';
+import androidStudioIcon from '../assets/skills/android-studio.svg';
+import unityIcon from '../assets/skills/unity.svg';
+import expoIcon from '../assets/skills/expo.svg';
 
 const skillsData = [
-  { name: 'Python', icon: <FaPython />, color: '#3776AB' },
-  { name: 'PHP', icon: <FaPhp />, color: '#777BB4' },
-  { name: 'Laravel', icon: <FaLaravel />, color: '#FF2D20' },
-  { name: 'Java', icon: <FaJava />, color: '#007396' },
-  { name: 'C#', icon: <SiDotnet />, color: '#512BD4' },
-  { name: 'JavaScript', icon: <FaJsSquare />, color: '#F7DF1E' },
-  { name: 'Node.js', icon: <FaNodeJs />, color: '#339933' },
-  { name: 'Convex', icon: <ConvexIcon />, color: '#EE342F' },
-  { name: 'React Native', icon: <FaReact />, color: '#61DAFB' },
-  { name: 'Android Studio', icon: <SiAndroidstudio />, color: '#3DDC84' },
-  { name: 'Unity', icon: <SiUnity />, color: '#FFFFFF' },
-  { name: 'Expo', icon: <SiExpo />, color: '#000020' },
+  { name: 'Python', icon: pythonIcon },
+  { name: 'PHP', icon: phpIcon },
+  { name: 'Laravel', icon: laravelIcon },
+  { name: 'Java', icon: javaIcon },
+  { name: 'C#', icon: csharpIcon },
+  { name: 'JavaScript', icon: javascriptIcon },
+  { name: 'Node.js', icon: nodejsIcon },
+  { name: 'Convex', icon: convexIcon },
+  { name: 'React Native', icon: reactIcon },
+  { name: 'Android Studio', icon: androidStudioIcon },
+  { name: 'Unity', icon: unityIcon },
+  { name: 'Expo', icon: expoIcon },
 ];
 
 const containerVariants = {
@@ -59,11 +62,11 @@ function Skills() {
       >
         {skillsData.map((skill) => (
           <motion.div key={skill.name} variants={itemVariants} className="keycap-wrapper">
-            <div className="keycap">
-              <div className="keycap-face keycap-front">
-                <span className="keycap-icon" style={{ color: skill.color }}>{skill.icon}</span>
+              <div className="keycap">
+                <div className="keycap-face keycap-front">
+                  <img className="keycap-icon" src={skill.icon} alt={`${skill.name} logo`} loading="lazy" />
+                </div>
               </div>
-            </div>
             <span className="keycap-label">{skill.name}</span>
           </motion.div>
         ))}
