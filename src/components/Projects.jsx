@@ -1,5 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import CardSwap, { Card } from './CardSwap';
+import React from 'react';
 import { Globe, Smartphone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -124,39 +123,6 @@ const projectData = [
 
 function Projects() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
-  const [viewportWidth, setViewportWidth] = useState(() =>
-    typeof window !== 'undefined' ? window.innerWidth : 1024
-  );
-
-  useEffect(() => {
-    if (typeof window === 'undefined') {
-      return undefined;
-    }
-
-    let resizeTimer;
-    const onResize = () => {
-      window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(() => {
-        setViewportWidth(window.innerWidth);
-      }, 120);
-    };
-
-    window.addEventListener('resize', onResize);
-    return () => {
-      window.removeEventListener('resize', onResize);
-      window.clearTimeout(resizeTimer);
-    };
-  }, []);
-
-  const cardSize = useMemo(() => {
-    if (viewportWidth <= 480) {
-      return { width: 280, height: 420, cardDistance: 26, verticalDistance: 34 };
-    }
-    if (viewportWidth <= 768) {
-      return { width: 320, height: 450, cardDistance: 32, verticalDistance: 40 };
-    }
-    return { width: 380, height: 480, cardDistance: 40, verticalDistance: 50 };
-  }, [viewportWidth]);
 
   return (
     <section id="projects" className="projects-section-container" ref={ref}>
@@ -176,77 +142,76 @@ function Projects() {
         </p>
       </motion.div>
 
-      <div className="projects-card-swap-wrapper">
-        <CardSwap
-          width={cardSize.width}
-          height={cardSize.height}
-          cardDistance={cardSize.cardDistance}
-          verticalDistance={cardSize.verticalDistance}
-          delay={4000}
-          pauseOnHover={true}
-          skewAmount={0}
-          easing="back.out(1.2)"
-        >
-          {projectData.map(project => (
-            <Card key={project.id} customClass="project-card">
-              {/* Image Section */}
-              <div className="project-image-container">
-                <img src={project.imageUrl} alt={project.title} className="project-image" />
-                <span className={`project-status-badge status-${project.statusColor}`}>
-                  {project.status}
-                </span>
-              </div>
+      <div className="projects-grid">
+        {projectData.map(project => (
+          <article
+            key={project.id}
+            className="project-card"
+            aria-labelledby={`project-title-${project.id}`}
+          >
+            {/* Image Section */}
+            <div className="project-image-container">
+              <img src={project.imageUrl} alt={project.title} className="project-image" />
+              <span className={`project-status-badge status-${project.statusColor}`}>
+                {project.status}
+              </span>
+            </div>
 
-              {/* Content Section */}
-              <div className="project-content">
-                <div className="project-top-info">
-                  <header className="project-card-header">
-                    <div>
-                      <h3 className="project-card-title">
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">{project.title}</a>
-                      </h3>
-                      <p className="project-card-subtitle">{project.subtitle}</p>
-                    </div>
-                    
-                    {/* Links Container */}
-                    <div className="project-card-links">
+            {/* Content Section */}
+            <div className="project-content">
+              <div className="project-top-info">
+                <header className="project-card-header">
+                  <div>
+                    <h3 className="project-card-title" id={`project-title-${project.id}`}>
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {project.title}
+                      </a>
+                    </h3>
+                    <p className="project-card-subtitle">{project.subtitle}</p>
+                  </div>
+                  
+                  {/* Links Container */}
+                  <div className="project-card-links">
+                    <a 
+                      href={project.liveUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="icon-link"
+                      title="Visit Website"
+                    >
+                      <Globe size={18} />
+                    </a>
+
+                    {project.androidUrl && (
                       <a 
-                        href={project.liveUrl} 
+                        href={project.androidUrl} 
                         target="_blank" 
                         rel="noopener noreferrer" 
                         className="icon-link"
-                        title="Visit Website"
+                        title="Download Android App"
                       >
-                        <Globe size={18} />
+                        <Smartphone size={18} />
                       </a>
-
-                      {project.androidUrl && (
-                        <a 
-                            href={project.androidUrl} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="icon-link"
-                            title="Download Android App"
-                        >
-                            <Smartphone size={18} />
-                        </a>
-                      )}
-                    </div>
-                  </header>
-                  
-                  <p className="project-card-description" aria-label="Challenge">{project.challenge}</p>
-                  <p className="project-card-impact" aria-label="Impact">{project.impact}</p>
-                </div>
-
-                <footer className="project-card-tech">
-                  {project.tech.map((tech, index) => (
-                    <span key={index} className="tech-pill">{tech}</span>
-                  ))}
-                </footer>
+                    )}
+                  </div>
+                </header>
+                
+                <p className="project-card-description" aria-label="Challenge">{project.challenge}</p>
+                <p className="project-card-impact" aria-label="Impact">{project.impact}</p>
               </div>
-            </Card>
-          ))}
-        </CardSwap>
+
+              <footer className="project-card-tech">
+                {project.tech.map((tech, index) => (
+                  <span key={index} className="tech-pill">{tech}</span>
+                ))}
+              </footer>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
