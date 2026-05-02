@@ -167,7 +167,6 @@ function Projects() {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label={`Visit ${project.title} project`}
                       >
                         {project.title}
                       </a>

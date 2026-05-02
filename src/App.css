@@ -647,6 +647,7 @@ a {
   line-height: 1.1;
   font-weight: 700;
   color: var(--text-primary);
+  word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
@@ -686,6 +687,7 @@ a {
   color: var(--text-secondary);
   margin-bottom: 0.5rem;
   line-height: 1.5;
+  word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
@@ -695,6 +697,7 @@ a {
   font-family: 'Fira Code', monospace;
   margin-top: 0.25rem;
   font-weight: 400;
+  word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
@@ -706,6 +709,7 @@ a {
   padding: 0.5rem 0;
   border-top: 1px solid rgba(100, 255, 218, 0.1);
   margin-bottom: 0.5rem;
+  word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
