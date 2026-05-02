@@ -142,9 +142,9 @@ function Projects() {
         </p>
       </motion.div>
 
-      <div className="projects-grid" role="list">
+      <div className="projects-grid">
         {projectData.map(project => (
-          <article key={project.id} className="project-card" role="listitem">
+          <article key={project.id} className="project-card">
             {/* Image Section */}
             <div className="project-image-container">
               <img src={project.imageUrl} alt={project.title} className="project-image" />
