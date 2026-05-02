@@ -144,7 +144,11 @@ function Projects() {
 
       <div className="projects-grid">
         {projectData.map(project => (
-          <article key={project.id} className="project-card">
+          <article
+            key={project.id}
+            className="project-card"
+            aria-labelledby={`project-title-${project.id}`}
+          >
             {/* Image Section */}
             <div className="project-image-container">
               <img src={project.imageUrl} alt={project.title} className="project-image" />
@@ -158,7 +162,7 @@ function Projects() {
               <div className="project-top-info">
                 <header className="project-card-header">
                   <div>
-                    <h3 className="project-card-title">
+                    <h3 className="project-card-title" id={`project-title-${project.id}`}>
                       <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">{project.title}</a>
                     </h3>
                     <p className="project-card-subtitle">{project.subtitle}</p>
