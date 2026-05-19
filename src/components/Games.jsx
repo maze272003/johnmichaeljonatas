@@ -1,7 +1,7 @@
 import React, { useState, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Gamepad2, Loader2 } from 'lucide-react';
+import { Gamepad2, Loader2, Bird, Circle, Car, X, Brain, Table, Blocks, Hammer, Rocket, Palette, Worm } from 'lucide-react';
 import GameModal from './GameModal';
 
 // Lazy load games for performance
@@ -22,7 +22,7 @@ const gamesData = [
     id: 'flappy-bird',
     title: 'Flappy Bird',
     description: 'Tap to fly through pipes!',
-    emoji: '🐦',
+    icon: Bird,
     color: '#f1c40f',
     component: FlappyBird,
     tag: '2D Canvas',
@@ -31,7 +31,7 @@ const gamesData = [
     id: 'bounce-ball',
     title: 'Bounce Ball',
     description: 'Keep bouncing on platforms!',
-    emoji: '⚽',
+    icon: Circle,
     color: '#e74c3c',
     component: BounceBall,
     tag: '2D Canvas',
@@ -40,7 +40,7 @@ const gamesData = [
     id: 'car-racing',
     title: 'Car Racing 3D',
     description: '3D racing with GPU rendering!',
-    emoji: '🏎️',
+    icon: Car,
     color: '#3498db',
     component: CarRacing3D,
     tag: '3D WebGL GPU',
@@ -49,7 +49,7 @@ const gamesData = [
     id: 'snake',
     title: 'Snake Game',
     description: 'Classic snake, eat and grow!',
-    emoji: '🐍',
+    icon: Worm,
     color: '#2ecc71',
     component: SnakeGame,
     tag: '2D Canvas',
@@ -58,7 +58,7 @@ const gamesData = [
     id: 'tic-tac-toe',
     title: 'Tic Tac Toe',
     description: 'Beat the unbeatable AI!',
-    emoji: '❌',
+    icon: X,
     color: '#9b59b6',
     component: TicTacToe,
     tag: 'AI Logic',
@@ -67,7 +67,7 @@ const gamesData = [
     id: 'memory-match',
     title: 'Memory Match',
     description: 'Find all matching pairs!',
-    emoji: '🧠',
+    icon: Brain,
     color: '#e67e22',
     component: MemoryMatch,
     tag: 'Puzzle',
@@ -76,7 +76,7 @@ const gamesData = [
     id: 'pong',
     title: 'Pong',
     description: 'Classic paddle vs AI!',
-    emoji: '🏓',
+    icon: Table,
     color: '#1abc9c',
     component: Pong,
     tag: '2D Canvas',
@@ -85,7 +85,7 @@ const gamesData = [
     id: 'brick-breaker',
     title: 'Brick Breaker',
     description: 'Smash all the bricks!',
-    emoji: '🧱',
+    icon: Blocks,
     color: '#e74c3c',
     component: BrickBreaker,
     tag: '2D Canvas',
@@ -94,7 +94,7 @@ const gamesData = [
     id: 'whack-a-mole',
     title: 'Whack-a-Mole',
     description: 'Whack moles before they hide!',
-    emoji: '🐹',
+    icon: Hammer,
     color: '#8e44ad',
     component: WhackAMole,
     tag: 'Reaction',
@@ -103,7 +103,7 @@ const gamesData = [
     id: 'space-shooter',
     title: 'Space Shooter',
     description: 'Defend against alien waves!',
-    emoji: '🚀',
+    icon: Rocket,
     color: '#2c3e50',
     component: SpaceShooter,
     tag: '2D Canvas',
@@ -112,7 +112,7 @@ const gamesData = [
     id: 'color-match',
     title: 'Color Match',
     description: 'Match colors, not words!',
-    emoji: '🎨',
+    icon: Palette,
     color: '#16a085',
     component: ColorMatch,
     tag: 'Brain Teaser',
@@ -186,7 +186,7 @@ export default function Games() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               <div className="game-card-emoji" style={{ background: `${game.color}20` }}>
-                <span>{game.emoji}</span>
+                <game.icon size={28} color={game.color} />
               </div>
               <div className="game-card-info">
                 <h3 className="game-card-title">{game.title}</h3>

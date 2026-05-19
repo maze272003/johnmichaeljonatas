@@ -36,19 +36,10 @@ function About() {
         <motion.div variants={fromRight} className="about-text">
           <h3>I&apos;m JM, a <span style={{ color: 'var(--accent-color)' }}>Full-Stack Developer</span></h3>
           <p>
-            I specialize in end-to-end web application development—from database 
-            architecture to user-facing interfaces. I led the design, development, 
-            and deployment of production systems including a QR-based inventory 
-            management platform and a government document request system, both 
-            serving real organizations in the Philippines.
+            I Specialize The Backend development, with a strong focus on laravel and nodejs, convex, and a solid understanding of frontend technologies like React and Nextjs.
           </p>
           <p>
-            My approach emphasizes systems-level thinking: building scalable 
-            architectures, designing reusable component patterns, and making 
-            strategic technical decisions that balance speed with long-term 
-            maintainability. I&apos;m driven by the impact of well-crafted software 
-            on operational efficiency and user experience, with deployment
-            experience across Ubuntu, Dokploy, Coolify, and Railway platforms.
+            My passion for coding started at a 1st year college, and I have been honing my skills ever since. I enjoy creating efficient and scalable web applications that solve real-world problems. In my free time, I like to explore new technologies and spending time with my family.
           </p>
         </motion.div>
       </div>

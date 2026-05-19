@@ -9,10 +9,10 @@
     @apply bg-primary text-text-secondary font-sans antialiased;
   }
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth overflow-x-hidden;
   }
   section {
-    @apply min-h-screen py-24 px-8 md:px-16 lg:px-24;
+    @apply py-24 px-8 md:px-16 lg:px-24;
   }
   h1, h2, h3 {
     @apply text-text-primary font-bold;
@@ -22,7 +22,6 @@
   }
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -35,4 +34,20 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #64ffda;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #b0b0b0;
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: #0077b6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

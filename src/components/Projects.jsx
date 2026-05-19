@@ -125,31 +125,35 @@ function Projects() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section id="projects" className="projects-section-container" ref={ref}>
-      <motion.div 
-        className="projects-text-content"
-        initial={{ opacity: 0, x: -50 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+    <section id="projects" ref={ref}>
+      <motion.h2 
+        className="section-title"
+        initial={{ opacity: 0, y: 50 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5 }}
       >
-        <h2 className="section-title">
-          <span className="number">05.</span>
-          Case Studies
-        </h2>
-        <p className="projects-description">
-          Selected projects where I led development from problem definition through 
-          production deployment. Hover to explore each case study.
-        </p>
-      </motion.div>
+        <span className="number">05.</span>
+        Projects
+      </motion.h2>
+      <motion.p
+        className="projects-description-centered"
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ delay: 0.2 }}
+      >
+        A selection of projects I've led from problem definition through production deployment.
+      </motion.p>
 
       <div className="projects-grid">
-        {projectData.map(project => (
-          <article
+        {projectData.map((project, index) => (
+          <motion.article
             key={project.id}
             className="project-card"
             aria-labelledby={`project-title-${project.id}`}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.4, delay: index * 0.08 }}
           >
-            {/* Image Section */}
             <div className="project-image-container">
               <img src={project.imageUrl} alt={project.title} className="project-image" />
               <span className={`project-status-badge status-${project.statusColor}`}>
@@ -157,7 +161,6 @@ function Projects() {
               </span>
             </div>
 
-            {/* Content Section */}
             <div className="project-content">
               <div className="project-top-info">
                 <header className="project-card-header">
@@ -174,7 +177,6 @@ function Projects() {
                     <p className="project-card-subtitle">{project.subtitle}</p>
                   </div>
                   
-                  {/* Links Container */}
                   <div className="project-card-links">
                     <a 
                       href={project.liveUrl} 
@@ -210,7 +212,7 @@ function Projects() {
                 ))}
               </footer>
             </div>
-          </article>
+          </motion.article>
         ))}
       </div>
     </section>

@@ -31,7 +31,7 @@ function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
 
-      const sections = ['about', 'skills', 'education', 'certificates', 'projects', 'games', 'testimonials', 'contact'];
+      const sections = ['about', 'skills', 'education', 'certificates', 'projects', 'contact'];
       const scrollPos = window.scrollY + 150;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -54,15 +54,13 @@ function Header() {
     { name: 'Education', href: '#education' },
     { name: 'Certificates', href: '#certificates' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Games', href: '#games' },
-    { name: 'Testimonials', href: '#testimonials' },
     { name: 'Contact', href: '#contact' },
   ];
 
   return (
-    <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
-      <a href="#hero" className="header-logo">
-        <img src={logo} alt="JM Portfolio Logo" style={{ height: '50px' }} />
+    <header className={`header ${isScrolled ? 'scrolled' : ''}`} role="banner">
+      <a href="#hero" className="header-logo" aria-label="Back to top">
+        <img src={logo} alt="JM Portfolio Logo" className="portfolio-logo" />
       </a>
 
       {/* Desktop Navigation */}
