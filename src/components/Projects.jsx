@@ -24,8 +24,8 @@ const projectData = [
         tech: ['Vanilla PHP', 'MySQL', 'Bootstrap'], 
         imageUrl: springbullbarsImg, 
         liveUrl: 'https://springbullbars.shop/', 
-        status: 'Live', 
-        statusColor: 'green' 
+        status: 'Archived', 
+        statusColor: 'gray' 
     },
     { 
         id: 2,
@@ -50,7 +50,7 @@ const projectData = [
         impact: 'Streamlined supply management for the HRU health center, enabling data-driven restocking decisions.',
         tech: ['Laravel', 'MySQL', 'Tailwind'], 
         imageUrl: gtims, 
-        liveUrl: 'https://gtimss.hostcluster.site', 
+        liveUrl: 'https://aisofrhu3104.com/', 
         status: 'Live', 
         statusColor: 'green' 
     },
@@ -63,7 +63,7 @@ const projectData = [
         impact: 'Digitized the document request workflow, reducing average processing time and eliminating unnecessary trips to the office.',
         tech: ['Laravel', 'React', 'Inertia.js'], 
         imageUrl: doconnect, 
-        liveUrl: 'https://doconnect.hostcluster.site', 
+        liveUrl: 'https://sg.bdrs.its-au.space/', 
         status: 'Live', 
         statusColor: 'green' 
     },
