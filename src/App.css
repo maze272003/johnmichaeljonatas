@@ -700,7 +700,7 @@ button, .cta-button, .contact-link-item {
 .project-card .project-image-container {
   position: relative;
   width: 100%;
-  height: 55%; 
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   border-bottom: 1px solid rgba(2, 12, 27, 0.1);
 }
