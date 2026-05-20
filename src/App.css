@@ -101,6 +101,7 @@ section {
   justify-content: center;
   max-width: 1100px;
   margin: 0 auto;
+  scroll-margin-top: calc(var(--header-height) + 32px);
 }
 
 @media (max-width: 768px) {

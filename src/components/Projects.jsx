@@ -122,7 +122,7 @@ const projectData = [
 ];
 
 function Projects() {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.05 });
 
   return (
     <section id="projects" ref={ref}>
